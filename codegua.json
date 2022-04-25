@@ -22,31 +22,37 @@
             }
         },
         {
-            "name": "reservoir1",
-            "type": "storage",
-            "max_volume": 200000,
-            "initial_volume": 170000
+            "name": "catchment2",
+            "type": "catchment",
+            "flow": {
+              "type": "dataframe",
+              "url": "data/Nodo2_m3s.csv",
+              "column": "Flow",
+              "index_col": "Start date",
+              "parse_dates": true
+            }
         },
         {
-            "name": "release1",
-            "type": "link",
-            "max_flow": 10,
-            "cost": -500
+            "name": "catchment3",
+            "type": "catchment",
+            "flow": {
+              "type": "dataframe",
+              "url": "data/Nodo3_m3s.csv",
+              "column": "Flow",
+              "index_col": "Start date",
+              "parse_dates": true
+            }
         },
         {
-            "name": "turbine1",
-            "type": "link",
-            "max_flow": "turbine1_discharge",
-            "cost": -200
-        },
-        {
-            "name": "spill1",
-            "type": "link",
-            "cost": 1000
-        },
-        {
-            "name": "reach1",
-            "type": "link"
+            "name": "catchment4",
+            "type": "catchment",
+            "flow": {
+              "type": "dataframe",
+              "url": "data/Nodo4_m3s.csv",
+              "column": "Flow",
+              "index_col": "Start date",
+              "parse_dates": true
+            }
         },
         {
             "name": "end1",
@@ -54,69 +60,27 @@
         }
     ],
     "edges": [
-        ["catchment1", "reservoir1"],
-        ["reservoir1", "release1"],
-        ["reservoir1", "turbine1"],
-        ["reservoir1", "spill1"],
-        ["release1", "reach1"],
-        ["turbine1", "reach1"],
-        ["spill1", "reach1"],
-        ["reach1", "end1"]
+        ["catchment1", "catchment2"],
+        ["catchment2", "catchment3"],
+        ["catchment3", "catchment4"],
+        ["catchment4", "end1"]
     ],
-    "parameters": {
-        "reservoir1_level": {
-          "type": "interpolatedvolume",
-          "node": "reservoir1",
-          "volumes": [0, 25000, 50000, 75000, 100000, 150000, 200000],
-          "values": [0, 29.2, 36.8, 42.2, 46.4, 53.1, 58.5],
-          "interp_kwargs": {  
-            "kind": "cubic"
-          }
-        },
-        "turbine1_discharge": {
-            "type": "indexedarray",
-            "index_parameter": "turbine1_control",
-            "params": [
-                40.0,
-                0.0
-            ]
-        },
-        "turbine1_control": {
-            "type": "controlcurveindex",
-            "storage_node": "reservoir1",
-            "control_curves": [
-                "turbine1_control_curve"
-            ]
-        },
-        "turbine1_control_curve": {
-            "type": "monthlyprofile",
-            "values": [0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8]
-        }
-    },
-    "recorders": {
-        "turbine1_energy": {
-            "type": "HydroPowerRecorder",
-            "node": "turbine1",
-            "water_elevation_parameter": "reservoir1_level",
-            "turbine_elevation": 35.0,
-            "efficiency": 0.85,
-            "flow_unit_conversion": 1e3
-        },
+     "recorders": {
         "catchment1_flow": {
             "type": "numpyarraynoderecorder",
             "node": "catchment1"
         },
-        "reservoir1_storage": {
-            "type": "numpyarraystoragerecorder",
-            "node": "reservoir1"
-        },
-        "turbine1_flow": {
+        "catchment2_flow": {
             "type": "numpyarraynoderecorder",
-            "node": "turbine1"
+            "node": "catchment2"
         },
-        "release1_flow": {
+        "catchment3_flow": {
             "type": "numpyarraynoderecorder",
-            "node": "release1"
-        }
+            "node": "catchment3"
+        },
+        "catchment4_flow": {
+            "type": "numpyarraynoderecorder",
+            "node": "catchment4"
+        }        
     }
 }

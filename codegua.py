@@ -11,12 +11,11 @@ if __name__ == "__main__":
     stats = m.run()
     print(stats)
 
-    print(m.recorders["turbine1_energy"].values())
-
-    df = m.to_dataframe()
-    print(df.head())
-
     from matplotlib import pyplot as plt
 
+    # print(m.recorders["catchment1_flow"].values())
+
+    df = m.to_dataframe()
+    # print(df.head())
     df.plot(subplots=True)
     plt.show()
