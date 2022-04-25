@@ -1,4 +1,4 @@
 # pywrDemo
-pruebas de asignación de agua en pywr
+Pruebas de asignación de agua en pywr
 
-actualmente trabajando en el Estero Codegua
+Actualmente trabajando en el Estero Codegua
