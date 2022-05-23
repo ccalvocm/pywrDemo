@@ -44,6 +44,12 @@
             }
         },
         {
+            "name": "EmbAlternativa1",
+            "type": "storage",
+            "max_volume": 20000000,
+            "initial_volume": 10000000
+        },
+        {
             "name": "catchment4",
             "type": "catchment",
             "flow": {
@@ -62,7 +68,8 @@
     "edges": [
         ["catchment1", "catchment2"],
         ["catchment2", "catchment3"],
-        ["catchment3", "catchment4"],
+        ["catchment3", "EmbAlternativa1"],
+        ["EmbAlternativa1", "catchment4"],
         ["catchment4", "end1"]
     ],
      "recorders": {
@@ -81,6 +88,25 @@
         "catchment4_flow": {
             "type": "numpyarraynoderecorder",
             "node": "catchment4"
+        },
+        "reservoir1_storage": {
+            "type": "numpyarraystoragerecorder",
+            "node": "EmbAlternativa1"
+        },
+        "release1_flow": {
+            "type": "numpyarraynoderecorder",
+            "node": "catchment4"
         }        
+    },
+    "parameters": {
+        "reservoir1_level": {
+          "type": "interpolatedvolume",
+          "node": "EmbAlternativa1",
+          "volumes": [0, 28270, 162175, 452768, 949674, 1729888, 2834869, 4273384, 6036131, 8120434, 10562499, 13411084, 16685227, 20381846, 24516071, 29110628, 34192256, 39780470, 45898105, 52550089],
+          "values": [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95],
+          "interp_kwargs": {  
+            "kind": "cubic"
+          }
+        }
     }
 }
