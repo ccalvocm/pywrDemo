@@ -1,0 +1,144 @@
+{
+    "metadata": {
+        "title": "Huasco",
+        "description": "Modelo Huasco Santa Juana hacia abajo",
+        "minimum_version": "0.4"
+    },
+    "timestepper": {
+        "start": "1994-04-01",
+        "end": "2022-03-31",
+        "timestep": "M"
+    },
+    "nodes": [
+        {
+            "name": "EntradaStaJuana",
+            "type": "catchment",
+            "flow": {
+              "type": "dataframe",
+              "url": "data/QEntradaSantaJuanaMon.csv",
+              "column": "Q(m3/s)",
+              "index_col": "Date",
+              "parse_dates": true
+            }
+        },
+        {
+            "name": "EmbSantaJuana",
+            "type": "storage",
+            "max_volume": 169880000,
+            "initial_volume": 84940000,
+            "cost":10,
+            "inputs":1
+        },
+        {
+            "name": "EvapSantaJuana",
+            "type": "Output",
+            "max_flow": "reservoir_evaporation",
+            "cost": -100
+        },   
+        {
+            "name": "DdaCanalZR4",
+            "type": "Output",
+            "cost": -100,
+            "max_flow": {
+              "type": "dataframe",
+              "url": "data/QSalidaCanalZR4.csv",
+              "column": "Q(m3/s)",
+              "index_col": "Date",
+              "parse_dates": true
+            }
+        },  
+        {
+          "name": "entregaSantaJuana",
+            "type": "link",
+            "max_flow": 100,
+            "cost": -100
+        },
+        {
+          "name": "entregaCanalZR4",
+            "type": "link",
+            "max_flow": 100,
+            "cost": -101
+        },         
+          {
+          "name": "EntradaQuebCam",
+            "type": "catchment",
+            "flow": {
+              "type": "dataframe",
+              "url": "data/QEntradaQuemCam.csv",
+              "column": "Q(m3/s)",
+              "index_col": "Date",
+              "parse_dates": true
+            }
+        },
+        {
+            "name": "end",
+            "type": "output",
+            "max_flow":800,
+            "cost":-100
+        }
+    ],
+    "edges": [
+        ["EntradaStaJuana", "EmbSantaJuana"],
+        ["EmbSantaJuana", "EvapSantaJuana"],
+        ["EmbSantaJuana", "entregaSantaJuana"],
+        ["EntradaQuebCam", "entregaSantaJuana"],
+        ["entregaSantaJuana", "entregaCanalZR4"],
+        ["entregaCanalZR4", "DdaCanalZR4"],
+        ["entregaCanalZR4", "end"]
+    ],
+     "recorders": {
+        "SantaJuanaStorage": {
+        "type": "numpyarraystoragerecorder",
+        "node": "EmbSantaJuana"},
+        "SantaJuanaDeliver": {
+        "type": "NodeRecorder",
+        "node": "end"
+        },
+          "DdaCanalZR4": {
+          "type": "numpyarraynoderecorder",
+          "node": "DdaCanalZR4"
+        },
+          "Desembocadura": {
+          "type": "numpyarraynoderecorder",
+          "node": "end"
+        },
+          "inflow": {
+          "type": "numpyarraynoderecorder",
+          "node": "EntradaStaJuana"
+        }    
+    },
+    "parameters": {
+        "reservoir1_level": {
+          "type": "interpolatedvolume",
+          "node": "EmbSantaJuana",
+          "volumes": [0,10000,1030000,5130000,10350000,15480000,20460000,30240000,40150000,50450000,60760000,68050000,72420000,74370000,76090000,79190000,81290000,81370000,84190000,87170000,90220000,93400000,94960000,96090000,99500000,102200000,105800000,108700000,112000000,116700000,119600000,122800000,126200000,129000000,130500000,132500000,133000000,138400000,141200000,144500000,147600000,151700000,154100000,157300000,159300000,160700000,163400000,164400000,168600000,170300000,171000000,171700000,172300000,173400000],
+          "values": [556.59,556.6,565.1,575.6,582.6,587.6,591.6,598.1,603.6,608.6,613.1,616,617.7,618.4,619.1,620.2,621,621.1,622,623,624.1,625.2,625.7,626.1,627.2,628,629.2,630.1,631.1,632.5,633.3,634.3,635.3,636,636.5,637,637.2,638.6,639.4,640.2,641,642.1,642.7,643.5,644,644.3,645,645.3,646.2,646.7,646.8,647,647.1,647.4],
+          "interp_kwargs": {  
+            "kind": "cubic"
+          }
+        },
+        "reservoir_area": {
+            "type": "interpolatedvolume",
+            "node": "EmbSantaJuana",
+            "volumes": [0, 173400000],
+            "values": [0, 1001],
+            "interp_kwargs": {  
+                "kind": "linear"
+              }
+        },
+       "evaporation_mm": {
+        "type": "monthlyprofile",
+        "url": "data/ProfileEvapSantaJuana.csv",
+        "index_col": "Date",
+        "column": "EV (mm/mes)"
+            },
+       "reservoir_evaporation": {
+        "type": "aggregated",
+        "agg_func": "product",
+        "parameters": [
+            "reservoir_area",
+            "evaporation_mm",
+            1]
+    }
+  }
+}
