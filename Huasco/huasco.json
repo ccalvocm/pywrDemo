@@ -25,14 +25,14 @@
             "name": "EmbSantaJuana",
             "type": "storage",
             "max_volume": 169880000,
-            "initial_volume": 84940000,
-            "cost":10,
+            "initial_volume": 169880000,
+            "cost":-99,
             "inputs":1
         },
         {
             "name": "EvapSantaJuana",
             "type": "Output",
-            "max_flow": "reservoir_evaporation",
+            "max_flow": "StaJuanaEvaporation",
             "cost": -100
         },   
         {
@@ -102,9 +102,9 @@
           "type": "numpyarraynoderecorder",
           "node": "end"
         },
-          "inflow": {
+          "EvapSantaJuana": {
           "type": "numpyarraynoderecorder",
-          "node": "EntradaStaJuana"
+          "node": "EvapSantaJuana"
         }    
     },
     "parameters": {
@@ -117,11 +117,19 @@
             "kind": "cubic"
           }
         },
+        "diasdelmes": {
+            "type":"monthlyprofile",
+            "values": [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        },
+        "conversion": {
+            "type": "constant",
+            "value": 86400
+        },
         "reservoir_area": {
             "type": "interpolatedvolume",
             "node": "EmbSantaJuana",
             "volumes": [0, 173400000],
-            "values": [0, 1001],
+            "values": [556.59, 657.59],
             "interp_kwargs": {  
                 "kind": "linear"
               }
@@ -132,13 +140,13 @@
         "index_col": "Date",
         "column": "EV (mm/mes)"
             },
-       "reservoir_evaporation": {
+       "StaJuanaEvaporation": {
         "type": "aggregated",
         "agg_func": "product",
         "parameters": [
             "reservoir_area",
             "evaporation_mm",
-            1]
+            0.001]
     }
   }
 }
