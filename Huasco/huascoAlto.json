@@ -107,6 +107,11 @@
             "flow": "flowQCarPot"
         },
        {
+            "name": "QTransito1",
+            "type": "catchment",
+            "flow": "flowQTransito1"
+        },
+       {
             "name": "QTransito2",
             "type": "catchment",
             "flow": "flowQTransito2"
@@ -145,15 +150,125 @@
             "name": "QLagunaGrande",
             "type": "catchment",
             "flow": "flowQLagunaGrande"
+        },
+        {"name": "entradaLagunaGrande",
+            "type": "link",
+            "cost": -100
+        },
+        {"name": "confValerianoLagunaGrande",
+            "type": "link",
+            "cost": -100
+        },
+        {"name": "entradaLagunaChica",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entradaQValeriano",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entregaDdaCorral",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entradaQChollay",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entregaDdaChollay",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entradaTransito1",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entregaCanalZR2_1",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entradaTransito1",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entradaTransito2",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entregaDdaTransito",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entregaCanalZR2_1",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entradaQuebChan",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entradaTransito3",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entregaCanalZR2_2",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entradaTransito4",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "conflCarmenTrans",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entradaQCarPot",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entradaQCarHu1",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entregaCanalZR1_1",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entradaQCarHu4",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entradaQCarHu2",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entradaQCarHu3",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entregaQuebElCarrizo",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entregaCanalZR1_2",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "conflCarmenTrans",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entregaCanalZR3",
+            "type": "link",
+            "cost": -100
         }
     ],
     "edges": [
-        ["EmbLagunaGrande", "entradaLagunaGrande"],
         ["QLagunaGrande", "entradaLagunaGrande"],
         ["entradaLagunaGrande", "confValerianoLagunaGrande"],
-        ["QValeriano", "entradaLagunaChica"],
+        ["QValeriano", "entradaQValeriano"],
         ["entradaQValeriano", "entradaLagunaChica"],
-        ["EmbLagunaChica", "entradaLagunaChica"],
         ["QLagunaChica", "entradaLagunaChica"],
         ["entradaLagunaChica", "confValerianoLagunaGrande"],
         ["confValerianoLagunaGrande", "entregaDdaCorral"],
@@ -174,14 +289,14 @@
         ["QQuebChan", "entradaQuebChan"],
         ["entradaQuebChan", "entradaTransito3"],
         ["QTransito3", "entradaTransito3"],
+        ["entradaTransito3", "entregaCanalZR2_2"],
         ["entregaCanalZR2_2", "DdaCanalZR2_2"],
         ["entregaCanalZR2_2", "entradaTransito4"],
         ["QTransito4", "entradaTransito4"],
         ["entradaTransito4", "conflCarmenTrans"],
-        ["entradaQCarPot", "entradaQPot"],
         ["QCarPot", "entradaQCarPot"],
-        ["QPot", "entradaQPot"],
-        ["entradaQPot", "entradaQCarHu"],
+        ["QPot", "entradaQCarPot"],
+        ["entradaQCarPot", "entradaQCarHu1"],
         ["QCarHu1","entradaQCarHu1"],
         ["entradaQCarHu1", "entregaCanalZR1_1"],
         ["entregaCanalZR1_1", "DdaCanalZR1_1"],
@@ -331,6 +446,13 @@
         "type": "dataframe",
         "url": "data/QEntradasm3day.csv",
          "column": "Runoff/Infiltration from R_Car_Pot to R_Car_Pot",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowQTransito1": {
+        "type": "dataframe",
+        "url": "data/QEntradasm3day.csv",
+         "column": "Runoff/Infiltration from R_Transito to R_SubTra1",
           "index_col": "Date",
           "parse_dates": true
         },
