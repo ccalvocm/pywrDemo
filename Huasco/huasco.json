@@ -9,13 +9,7 @@
         "end": "2019-03-31",
         "timestep": "M"
     },
-    "nodes": [
-                {
-            "name": "EmbSantaJuana",
-            "type": "output",
-            "max_flow":13200000,
-            "cost":100000
-        },      
+    "nodes": [  
         {
             "name": "DdaCanalZR2_1",
             "type": "Output",
@@ -268,20 +262,20 @@
             "type": "storage",
             "max_volume": 169880000,
             "initial_volume": 0,
-            "cost":-101,
+            "cost":999999,
             "inputs":1
         },
         {
             "name": "EvapSantaJuana",
             "type": "Output",
             "max_flow": "StaJuanaEvaporation",
-            "cost": -102
+            "cost": -103
         },
         {
           "name": "rStaJuanaAbajo",
             "type": "link",
             "max_flow": 13200000,
-            "cost": -100
+            "cost": -102
         },
         {
             "name": "DdaCanalZR4",
@@ -502,7 +496,7 @@
         {
             "name": "DdaCanalZR4",
             "type": "Output",
-            "cost": -100,
+            "cost": -1000,
             "max_flow": "flowCanalZR41"
         },  
         {
@@ -513,7 +507,7 @@
         {
           "name": "entregaCanalZR41",
             "type": "link",
-            "cost": -100
+            "cost": -1000
         },   
         {
           "name": "entradaHonda",
@@ -528,12 +522,12 @@
         {
           "name": "entregaCanalZR42",
             "type": "link",
-            "cost": -100
+            "cost": -1000
         },
         {
             "name": "DdaCanalZR42",
             "type": "Output",
-            "cost": -100,
+            "cost": -1000,
             "max_flow": "flowCanalZR42"
         },
         {
@@ -549,12 +543,12 @@
         {
           "name": "entregaCanalZR5",
             "type": "link",
-            "cost": -100
+            "cost": -1000
         },
         {
             "name": "DdaCanalZR5",
             "type": "Output",
-            "cost": -100,
+            "cost": -1000,
             "max_flow": "flowCanalZR5"
         },
         {
@@ -586,7 +580,7 @@
         {
             "name": "DdaCanalZR6",
             "type": "Output",
-            "cost": -100,
+            "cost": -1000,
             "max_flow": "flowCanalZR6"
         },
         {
@@ -622,12 +616,12 @@
         {
           "name": "entregaCanalZR7",
             "type": "link",
-            "cost": -100
+            "cost": -1000
         },
         {
             "name": "DdaCanalZR7",
             "type": "Output",
-            "cost": -100,
+            "cost": -1000,
             "max_flow": "flowCanalZR7"
         },
         {"name": "EntradaQ_AS1",
@@ -665,7 +659,7 @@
         {
             "name": "DdaCanalZR8",
             "type": "Output",
-            "cost": -100,
+            "cost": -1000,
             "max_flow": "flowCanalZR8"
         },
         {"name": "EntradaQ_S_N_6",
@@ -795,9 +789,13 @@
         "type": "NodeRecorder",
         "node": "end"
         },
-          "DdaCanalZR7": {
+          "rStaJuanaAbajo": {
           "type": "numpyarraynoderecorder",
-          "node": "DdaCanalZR7"
+          "node": "rStaJuanaAbajo"
+        },
+          "entregaCanalZR3": {
+          "type": "numpyarraynoderecorder",
+          "node": "entregaCanalZR3"
         },
           "Desembocadura": {
           "type": "numpyarraynoderecorder",
@@ -906,7 +904,7 @@
         },
         "flowQuebMait": {
         "type": "dataframe",
-        "url": "data/QEntradas.csv",
+        "url": "data/QEntradasm3day.csv",
          "column": "Runoff/Infiltration from Q_Mait to Q_Mait",
           "index_col": "Date",
           "parse_dates": true
