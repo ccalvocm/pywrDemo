@@ -53,5 +53,5 @@ def main():
         dfFull.to_csv(os.path.join('data', dict_file[file]))
 
 
-if __name__ == '__main__':
-    main()
+# if __name__ == '__main__':
+#     main()

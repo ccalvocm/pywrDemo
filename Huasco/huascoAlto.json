@@ -1,0 +1,497 @@
+{
+    "metadata": {
+        "title": "Huasco",
+        "description": "Modelo Huasco Santa Juana hacia abajo",
+        "minimum_version": "0.4"
+    },
+    "timestepper": {
+        "start": "1994-04-01",
+        "end": "2019-03-31",
+        "timestep": "M"
+    },
+    "nodes": [
+        {
+            "name": "EntradaStaJuana",
+            "type": "catchment",
+            "flow": "EntradaStaJuanaArriba_final"
+        },
+        {
+            "name": "EmbSantaJuana",
+            "type": "storage",
+            "max_volume": 169880000,
+            "initial_volume": 0,
+            "cost":-101,
+            "inputs":1
+        },
+        {
+            "name": "EvapSantaJuana",
+            "type": "Output",
+            "max_flow": "StaJuanaEvaporation",
+            "cost": -102
+        },
+        {
+          "name": "rStaJuanaAbajo",
+            "type": "link",
+            "max_flow": 13200000,
+            "cost": -100
+        },
+        {
+            "name": "DdaCanalZR4",
+            "type": "Output",
+            "cost": -100,
+            "max_flow": "flowCanalZR41"
+        },  
+        {
+          "name": "EntradaQuebCam",
+            "type": "catchment",
+            "flow":  "flowQuebCam"
+        },
+        {
+          "name": "entregaCanalZR41",
+            "type": "link",
+            "cost": -100
+        },   
+        {
+          "name": "entradaHonda",
+            "type": "link",
+            "cost": -100
+        },       
+        {
+          "name": "EntradaQuebHonda",
+            "type": "catchment",
+            "flow":  "flowQuebHonda"
+        },
+        {
+          "name": "entregaCanalZR42",
+            "type": "link",
+            "cost": -100
+        },
+        {
+            "name": "DdaCanalZR42",
+            "type": "Output",
+            "cost": -100,
+            "max_flow": "flowCanalZR42"
+        },
+        {
+          "name": "EntradaQ_S_N_1",
+            "type": "link",
+            "cost": -100
+        },
+        {
+          "name": "Q_S_N_1",
+            "type": "catchment",
+            "flow":  "flowQ_S_N_1"
+        },
+        {
+          "name": "entregaCanalZR5",
+            "type": "link",
+            "cost": -100
+        },
+        {
+            "name": "DdaCanalZR5",
+            "type": "Output",
+            "cost": -100,
+            "max_flow": "flowCanalZR5"
+        },
+        {
+          "name": "EntradaQ_AguaV",
+            "type": "link",
+            "cost": -100
+        },
+        {
+          "name": "Q_AguaV",
+            "type": "catchment",
+            "flow":  "flowQuebAguaV"
+        },
+        {
+          "name": "Q_Mait",
+            "type": "catchment",
+            "flow":  "flowQuebMait"
+        },           
+        {
+            "name": "end",
+            "type": "output",
+            "max_flow":13200000,
+            "cost":10000
+        },
+        {
+          "name": "entregaCanalZR6",
+            "type": "link",
+            "cost": -100
+        },
+        {
+            "name": "DdaCanalZR6",
+            "type": "Output",
+            "cost": -100,
+            "max_flow": "flowCanalZR6"
+        },
+        {
+          "name": "EntradaQ_S_N_2",
+            "type": "link",
+            "cost": -100
+        },
+        {
+          "name": "Q_S_N_2",
+            "type": "catchment",
+            "flow":  "flowQ_S_N_2"
+        },
+        {
+          "name": "EntradaQ_S_N_7",
+            "type": "link",
+            "cost": -100
+        },
+        {
+          "name": "Q_S_N_7",
+            "type": "catchment",
+            "flow":  "flowQ_S_N_7"
+        },
+        {
+          "name": "EntradaQ_S_N_3",
+            "type": "link",
+            "cost": -100
+        },
+        {
+          "name": "Q_S_N_3",
+            "type": "catchment",
+            "flow":  "flowQ_S_N_3"
+        },
+        {
+          "name": "entregaCanalZR7",
+            "type": "link",
+            "cost": -100
+        },
+        {
+            "name": "DdaCanalZR7",
+            "type": "Output",
+            "cost": -100,
+            "max_flow": "flowCanalZR7"
+        },
+        {"name": "EntradaQ_AS1",
+            "type": "link",
+            "cost": -100
+        },
+        {
+          "name": "Q_AS1",
+            "type": "catchment",
+            "flow":  "flowQ_AS1"
+        },
+        {"name": "EntradaQ_S_N_5",
+            "type": "link",
+            "cost": -100
+        },
+        {
+          "name": "Q_S_N_5",
+            "type": "catchment",
+            "flow":  "flowQ_S_N_5"
+        },
+        {"name": "EntradaQ_AS2",
+            "type": "link",
+            "cost": -100
+        },
+        {
+          "name": "Q_AS2",
+            "type": "catchment",
+            "flow":  "flowQ_AS2"
+        },
+        {
+          "name": "entregaCanalZR8",
+            "type": "link",
+            "cost": -100
+        },
+        {
+            "name": "DdaCanalZR8",
+            "type": "Output",
+            "cost": -100,
+            "max_flow": "flowCanalZR8"
+        },
+        {"name": "EntradaQ_S_N_6",
+            "type": "link",
+            "cost": -100
+        },
+        {
+          "name": "Q_S_N_6",
+            "type": "catchment",
+            "flow":  "flowQ_S_N_6"
+        },
+        {"name": "EntradaQ_DelP",
+            "type": "link",
+            "cost": -100
+        },
+        {
+          "name": "Q_DelP",
+            "type": "catchment",
+            "flow":  "flowQ_DelP"
+        },
+        {"name": "EntradaQ_S_N_3",
+            "type": "link",
+            "cost": -100
+        },
+        {
+          "name": "Q_S_N_3",
+            "type": "catchment",
+            "flow":  "flowQ_S_N_3"
+        }
+    ],
+    "edges": [
+        ["EmbLagunaGrande", "entradaLagunaGrande"],
+        ["QLagunaGrande", "entradaLagunaGrande"],
+        ["entradaLagunaGrande", "confValerianoLagunaGrande"],
+        ["QValeriano", "entradaLagunaChica"],
+        ["entradaQValeriano", "entradaLagunaChica"],
+        ["EmbLagunaChica", "entradaLagunaChica"],
+        ["QLagunaChica", "entradaLagunaChica"],
+        ["entradaLagunaChica", "confValerianoLagunaGrande"],
+        ["confValerianoLagunaGrande", "entregaDdaCorral"],
+        ["entregaDdaCorral", "DdaCorral"],
+        ["entregaDdaCorral", "entradaQChollay"],
+        ["QChollay", "entradaQChollay"],
+        ["entradaQChollay", "entregaDdaChollay"],
+        ["entregaDdaChollay", "DdaChollay"],
+        ["entregaDdaChollay", "entradaTransito1"],
+        ["entradaTransito1", "entregaDdaTransito"],
+        ["QTransito1", "entradaTransito1"],
+        ["entregaDdaTransito", "DdaTransito"],
+        ["entregaDdaTransito", "entregaCanalZR2_1"],
+        ["entregaCanalZR2_1", "DdaCanalZR2_1"],
+        ["entregaCanalZR2_1", "entradaTransito2"],
+        ["QTransito2", "entradaTransito2"],
+        ["entradaTransito2", "entradaQuebChan"],
+        ["QQuebChan", "entradaQuebChan"],
+        ["entradaQuebChan", "entradaTransito3"],
+        ["QTransito3", "entradaTransito3"],
+        ["entregaCanalZR2_2", "DdaCanalZR2_2"],
+        ["entregaCanalZR2_2", "entradaTransito4"],
+        ["QTransito4", "entradaTransito4"],
+        ["entradaTransito4", "conflCarmenTrans"],
+        ["entradaQCarPot", "entradaQPot"],
+        ["QCarPot", "entradaQCarPot"],
+        ["QPot", "entradaQPot"],
+        ["entradaQPot", "entradaQCarHu"],
+        ["QCarHu","entradaQCarHu"],
+        ["entradaQCarHu", "entregaCanalZR1_1"],
+        ["entregaCanalZR1_1", "DdaCanalZR1_1"],
+        ["entregaQuebElCarrizo", "DdaQuebElCarrizo"],
+        ["entregaCanalZR1_2", "DdaCanalZR1_2"],
+        ["entregaCanalZR1_2", "conflCarmenTrans"],
+        ["conflCarmenTrans","entregaCanalZR3"]
+        ["entregaCanalZR3", "DdaCanalZR3"],
+        ["entregaCanalZR3","EmbSantaJuana"]
+    ],
+     "recorders": {
+        "SantaJuanaStorage": {
+        "type": "numpyarraystoragerecorder",
+        "node": "EmbSantaJuana"},
+        "SantaJuanaDeliver": {
+        "type": "NodeRecorder",
+        "node": "end"
+        },
+          "DdaCanalZR7": {
+          "type": "numpyarraynoderecorder",
+          "node": "DdaCanalZR7"
+        },
+          "Desembocadura": {
+          "type": "numpyarraynoderecorder",
+          "node": "end"
+        },
+          "EvapSantaJuana": {
+          "type": "numpyarraynoderecorder",
+          "node": "EvapSantaJuana"
+        }    
+    },
+    "parameters": {
+        "reservoir1_level": {
+          "type": "interpolatedvolume",
+          "node": "EmbSantaJuana",
+          "volumes": [0,10000,1030000,5130000,10350000,15480000,20460000,30240000,40150000,50450000,60760000,68050000,72420000,74370000,76090000,79190000,81290000,81370000,84190000,87170000,90220000,93400000,94960000,96090000,99500000,102200000,105800000,108700000,112000000,116700000,119600000,122800000,126200000,129000000,130500000,132500000,133000000,138400000,141200000,144500000,147600000,151700000,154100000,157300000,159300000,160700000,163400000,164400000,168600000,170300000,171000000,171700000,172300000,173400000],
+          "values": [556.59,556.6,565.1,575.6,582.6,587.6,591.6,598.1,603.6,608.6,613.1,616,617.7,618.4,619.1,620.2,621,621.1,622,623,624.1,625.2,625.7,626.1,627.2,628,629.2,630.1,631.1,632.5,633.3,634.3,635.3,636,636.5,637,637.2,638.6,639.4,640.2,641,642.1,642.7,643.5,644,644.3,645,645.3,646.2,646.7,646.8,647,647.1,647.4],
+          "interp_kwargs": {  
+            "kind": "cubic"}
+          },
+             "flowStaJuanaArriba": {
+            "type": "dataframe",
+            "url": "data/q_relleno_1987-2022_monthly.csv",
+             "column": "03820001-1",
+              "index_col": "Date",
+              "parse_dates": true
+        },
+            "EntradaStaJuanaArriba_final": {
+            "type": "aggregated",
+            "agg_func": "product",
+            "parameters": [
+                "flowStaJuanaArriba",
+                "conversion"
+            ]
+        },
+        "diasdelmes": {
+            "type":"monthlyprofile",
+            "values": [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        },
+        "conversion": {
+            "type": "constant",
+            "value": 86400
+        },
+        "reservoir_area": {
+            "type": "interpolatedvolume",
+            "node": "EmbSantaJuana",
+            "values": [0, 4023616],
+            "volumes": [0, 173400000],
+            "interp_kwargs": {  
+                "kind": "linear"
+              }
+        },
+       "evaporation_mm": {
+        "type": "monthlyprofile",
+        "url": "data/ProfileEvapSantaJuana.csv",
+        "index_col": "Date",
+        "column": "EV (mm/mes)"
+            },
+       "StaJuanaEvaporation": {
+        "type": "aggregated",
+        "agg_func": "product",
+        "parameters": [
+            "reservoir_area",
+            "evaporation_mm",
+            3.33e-5]
+            },
+        "flowQuebCam": {
+        "type": "dataframe",
+        "url": "data/QEntradas.csv",
+         "column": "Q_Cam  2 \\ Reach",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+       "flowQuebHonda": {
+        "type": "dataframe",
+        "url": "data/QEntradas.csv",
+         "column": "Q_Honda  2 \\ Reach",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowCanalZR41": {
+        "type": "dataframe",
+        "url": "data/QSalidasCanales.csv",
+          "column": "Transmission Link from Withdrawal Node 17 to CanalZR4_1",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+      "flowCanalZR42": {
+        "type": "dataframe",
+        "url": "data/QSalidasCanalesm3day.csv",
+          "column": "Transmission Link from Withdrawal Node 16 to CanalZR4_2",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+      "flowCanalZR5": {
+        "type": "dataframe",
+        "url": "data/QSalidasCanalesm3day.csv",
+          "column": "Transmission Link from Withdrawal Node 22 to CanalZR5",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowQ_S_N_1": {
+        "type": "dataframe",
+        "url": "data/QEntradasm3day.csv",
+         "column": "Q_S_N1  2 \\ Reach",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowQuebAguaV": {
+        "type": "dataframe",
+        "url": "data/QEntradas.csv",
+         "column": "Q_AguaV  2 \\ Reach",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowQuebMait": {
+        "type": "dataframe",
+        "url": "data/QEntradas.csv",
+         "column": "Q_Mait  2 \\ Reach",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+      "flowCanalZR6": {
+        "type": "dataframe",
+        "url": "data/QSalidasCanalesm3day.csv",
+          "column": "Transmission Link from Withdrawal Node 25 to CanalZR6",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowQ_S_N_2": {
+        "type": "dataframe",
+        "url": "data/QEntradasm3day.csv",
+         "column": "Q_S_N_2  2 \\ Reach",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowQ_S_N_7": {
+        "type": "dataframe",
+        "url": "data/QEntradasm3day.csv",
+         "column": "Q_S_N_7  2 \\ Reach",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowQ_S_N_3": {
+        "type": "dataframe",
+        "url": "data/QEntradasm3day.csv",
+         "column": "Q_S_N_3  2 \\ Reach",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+      "flowCanalZR7": {
+        "type": "dataframe",
+        "url": "data/QSalidasCanalesm3day.csv",
+          "column": "Transmission Link from Withdrawal Node 26 to CanalZR7",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowQ_AS1": {
+        "type": "dataframe",
+        "url": "data/QEntradasm3day.csv",
+         "column": "Q_AS1  2 \\ Reach",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowQ_S_N_5": {
+        "type": "dataframe",
+        "url": "data/QEntradasm3day.csv",
+         "column": "Q_S_N_5  2 \\ Reach",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowQ_AS2": {
+        "type": "dataframe",
+        "url": "data/QEntradasm3day.csv",
+         "column": "Q_AS1  2 \\ Reach",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+      "flowCanalZR8": {
+        "type": "dataframe",
+        "url": "data/QSalidasCanalesm3day.csv",
+          "column": "Transmission Link from Withdrawal Node 29 to CanalZR8",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowQ_S_N_6": {
+        "type": "dataframe",
+        "url": "data/QEntradasm3day.csv",
+         "column": "Q_S_N_6  2 \\ Reach",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowQ_DelP": {
+        "type": "dataframe",
+        "url": "data/QEntradasm3day.csv",
+         "column": "Q_DelP  2 \\ Reach",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowQ_S_N_3": {
+        "type": "dataframe",
+        "url": "data/QEntradasm3day.csv",
+         "column": "Q_S_N_3  2 \\ Reach",
+          "index_col": "Date",
+          "parse_dates": true
+        }
+    }
+}
