@@ -41,8 +41,8 @@ def main():
     root = r'G:\pywrDemo\Huasco'
     os.chdir(root)
 
-    dict_file = {'Entradas.csv':'QEntradas.csv',
-                 'SalidasCanales.csv': 'QSalidasCanales.csv'}
+    dict_file = {'QEntradas.csv':'QEntradas.csv',
+                 'Qsalidas.csv': 'QSalidasCanales.csv'}
 
     # proceso
     for file in list(dict_file.keys()):
@@ -53,5 +53,5 @@ def main():
         dfFull.to_csv(os.path.join('data', dict_file[file]))
 
 
-# if __name__ == '__main__':
-#     main()
+if __name__ == '__main__':
+    main()

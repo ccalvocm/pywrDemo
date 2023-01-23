@@ -355,20 +355,20 @@
         "flowQuebCam": {
         "type": "dataframe",
         "url": "data/QEntradas.csv",
-         "column": "Q_Cam  2 \\ Reach",
+         "column": "Runoff/Infiltration from Q_Cam to Q_Cam",
           "index_col": "Date",
           "parse_dates": true
         },
        "flowQuebHonda": {
         "type": "dataframe",
         "url": "data/QEntradas.csv",
-         "column": "Q_Honda  2 \\ Reach",
+         "column": "Runoff/Infiltration from Q_Honda to Q_El_J",
           "index_col": "Date",
           "parse_dates": true
         },
         "flowCanalZR41": {
         "type": "dataframe",
-        "url": "data/QSalidasCanales.csv",
+        "url": "data/QSalidasCanalesm3day.csv",
           "column": "Transmission Link from Withdrawal Node 17 to CanalZR4_1",
           "index_col": "Date",
           "parse_dates": true
@@ -390,21 +390,21 @@
         "flowQ_S_N_1": {
         "type": "dataframe",
         "url": "data/QEntradasm3day.csv",
-         "column": "Q_S_N1  2 \\ Reach",
+         "column": "Runoff/Infiltration from Q_S_N_1 to Q_S_N1",
           "index_col": "Date",
           "parse_dates": true
         },
         "flowQuebAguaV": {
         "type": "dataframe",
         "url": "data/QEntradas.csv",
-         "column": "Q_AguaV  2 \\ Reach",
+         "column": "Runoff/Infiltration from Q_AV to Q_AguaV",
           "index_col": "Date",
           "parse_dates": true
         },
         "flowQuebMait": {
         "type": "dataframe",
         "url": "data/QEntradas.csv",
-         "column": "Q_Mait  2 \\ Reach",
+         "column": "Runoff/Infiltration from Q_Mait to Q_Mait",
           "index_col": "Date",
           "parse_dates": true
         },
@@ -418,21 +418,21 @@
         "flowQ_S_N_2": {
         "type": "dataframe",
         "url": "data/QEntradasm3day.csv",
-         "column": "Q_S_N_2  2 \\ Reach",
+         "column": "Runoff/Infiltration from Q_S_N_2 to Q_S_N_2",
           "index_col": "Date",
           "parse_dates": true
         },
         "flowQ_S_N_7": {
         "type": "dataframe",
         "url": "data/QEntradasm3day.csv",
-         "column": "Q_S_N_7  2 \\ Reach",
+         "column": "Runoff/Infiltration from Q_S_N_4 to Q_S_N_7",
           "index_col": "Date",
           "parse_dates": true
         },
         "flowQ_S_N_3": {
         "type": "dataframe",
         "url": "data/QEntradasm3day.csv",
-         "column": "Q_S_N_3  2 \\ Reach",
+         "column": "Runoff/Infiltration from Q_S_N_3 to Q_S_N_6",
           "index_col": "Date",
           "parse_dates": true
         },
@@ -446,21 +446,21 @@
         "flowQ_AS1": {
         "type": "dataframe",
         "url": "data/QEntradasm3day.csv",
-         "column": "Q_AS1  2 \\ Reach",
+         "column": "Runoff/Infiltration from Q_AS to Q_AS1",
           "index_col": "Date",
           "parse_dates": true
         },
         "flowQ_S_N_5": {
         "type": "dataframe",
         "url": "data/QEntradasm3day.csv",
-         "column": "Q_S_N_5  2 \\ Reach",
+         "column": "Runoff/Infiltration from Q_S_N_5 to Q_S_N_5",
           "index_col": "Date",
           "parse_dates": true
         },
         "flowQ_AS2": {
         "type": "dataframe",
         "url": "data/QEntradasm3day.csv",
-         "column": "Q_AS1  2 \\ Reach",
+         "column": "Runoff/Infiltration from Q_AS to Q_AS2",
           "index_col": "Date",
           "parse_dates": true
         },
@@ -474,21 +474,21 @@
         "flowQ_S_N_6": {
         "type": "dataframe",
         "url": "data/QEntradasm3day.csv",
-         "column": "Q_S_N_6  2 \\ Reach",
+         "column": "Runoff/Infiltration from Q_S_N_6 to Q_S_N_3",
           "index_col": "Date",
           "parse_dates": true
         },
         "flowQ_DelP": {
         "type": "dataframe",
         "url": "data/QEntradasm3day.csv",
-         "column": "Q_DelP  2 \\ Reach",
+         "column": "Runoff/Infiltration from Q_DelP to Q_DelP",
           "index_col": "Date",
           "parse_dates": true
         },
         "flowQ_S_N_3": {
         "type": "dataframe",
         "url": "data/QEntradasm3day.csv",
-         "column": "Q_S_N_3  2 \\ Reach",
+         "column": "Runoff/Infiltration from Q_S_N_3 to Q_S_N_6",
           "index_col": "Date",
           "parse_dates": true
         }
