@@ -13,25 +13,25 @@
         {
             "name": "DdaCanalZR2_1",
             "type": "Output",
-            "cost": -100,
+            "cost": -1000,
             "max_flow": "flowCanalZR2_1"
         },   
         {
             "name": "DdaCanalZR2_2",
             "type": "Output",
-            "cost": -100,
+            "cost": -1000,
             "max_flow": "flowCanalZR2_2"
         }, 
         {
             "name": "DdaCanalZR3",
             "type": "Output",
-            "cost": -100,
+            "cost": -1000,
             "max_flow": "flowCanalZR3"
         }, 
         {
             "name": "DdaCanalZR1_2",
             "type": "Output",
-            "cost": -100,
+            "cost": -1000,
             "max_flow": "flowCanalZR1_2"
         },
         {
@@ -43,13 +43,13 @@
         {
             "name": "DdaCanalZR1_1",
             "type": "Output",
-            "cost": -100,
+            "cost": -1000,
             "max_flow": "flowCanalZR1_1"
         },
         {
             "name": "DdaCanalZR1_2",
             "type": "Output",
-            "cost": -100,
+            "cost": -1000,
             "max_flow": "flowCanalZR1_2"
         },
         {
@@ -61,13 +61,13 @@
         {
             "name": "DdaChollay",
             "type": "Output",
-            "cost": -100,
+            "cost": -1000,
             "max_flow": "flowDdaChollay"
         },
        {
             "name": "DdaCorral",
             "type": "Output",
-            "cost": -100,
+            "cost": -1000,
             "max_flow": "flowDdaCorral"
         },               
         {
@@ -983,13 +983,6 @@
         "type": "dataframe",
         "url": "data/QEntradasm3day.csv",
          "column": "Runoff/Infiltration from Q_DelP to Q_DelP",
-          "index_col": "Date",
-          "parse_dates": true
-        },
-        "flowQ_S_N_3": {
-        "type": "dataframe",
-        "url": "data/QEntradasm3day.csv",
-         "column": "Runoff/Infiltration from Q_S_N_3 to Q_S_N_6",
           "index_col": "Date",
           "parse_dates": true
         },
