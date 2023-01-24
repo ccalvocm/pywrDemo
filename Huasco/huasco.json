@@ -37,7 +37,7 @@
         {
             "name": "DdaQuebElCarrizo",
             "type": "Output",
-            "cost": -100,
+            "cost": -1000,
             "max_flow": "flowQuebElCarrizo"
         },
         {
@@ -55,7 +55,7 @@
         {
             "name": "DdaTransito",
             "type": "Output",
-            "cost": -100,
+            "cost": -1000,
             "max_flow": "flowDdaTransito"
         },
         {
@@ -262,7 +262,7 @@
             "type": "storage",
             "max_volume": 169880000,
             "initial_volume": 0,
-            "cost":999999,
+            "cost":-999999,
             "inputs":1
         },
         {
