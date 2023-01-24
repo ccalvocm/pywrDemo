@@ -1,0 +1,517 @@
+{
+    "metadata": {
+        "title": "Huasco",
+        "description": "Modelo Huasco Santa Juana hacia aguas arriba",
+        "minimum_version": "0.4"
+    },
+    "timestepper": {
+        "start": "1994-04-01",
+        "end": "2019-03-31",
+        "timestep": "M"
+    },
+    "nodes": [
+        {
+            "name": "EmbSantaJuana",
+            "type": "output",
+            "max_flow":13200000,
+            "cost":10000
+        },      
+        {
+            "name": "DdaCanalZR2_1",
+            "type": "Output",
+            "cost": -100,
+            "max_flow": "flowCanalZR2_1"
+        },   
+        {
+            "name": "DdaCanalZR2_2",
+            "type": "Output",
+            "cost": -100,
+            "max_flow": "flowCanalZR2_2"
+        }, 
+        {
+            "name": "DdaCanalZR3",
+            "type": "Output",
+            "cost": -100,
+            "max_flow": "flowCanalZR3"
+        }, 
+        {
+            "name": "DdaCanalZR1_2",
+            "type": "Output",
+            "cost": -100,
+            "max_flow": "flowCanalZR1_2"
+        },
+        {
+            "name": "DdaQuebElCarrizo",
+            "type": "Output",
+            "cost": -100,
+            "max_flow": "flowQuebElCarrizo"
+        },
+        {
+            "name": "DdaCanalZR1_1",
+            "type": "Output",
+            "cost": -100,
+            "max_flow": "flowCanalZR1_1"
+        },
+        {
+            "name": "DdaCanalZR1_2",
+            "type": "Output",
+            "cost": -100,
+            "max_flow": "flowCanalZR1_2"
+        },
+        {
+            "name": "DdaTransito",
+            "type": "Output",
+            "cost": -100,
+            "max_flow": "flowDdaTransito"
+        },
+        {
+            "name": "DdaChollay",
+            "type": "Output",
+            "cost": -100,
+            "max_flow": "flowDdaChollay"
+        },
+       {
+            "name": "DdaCorral",
+            "type": "Output",
+            "cost": -100,
+            "max_flow": "flowDdaCorral"
+        },               
+        {
+            "name": "QCarHu1",
+            "type": "catchment",
+            "flow": "flowQCarHu1"
+        },
+      {
+            "name": "QCarHu2",
+            "type": "catchment",
+            "flow": "flowQCarHu2"
+        },
+        {
+            "name": "QCarHu3",
+            "type": "catchment",
+            "flow": "flowQCarHu3"
+        },
+      {
+            "name": "QCarHu4",
+            "type": "catchment",
+            "flow": "flowQCarHu4"
+        },
+        {
+            "name": "QPot",
+            "type": "catchment",
+            "flow": "flowQPot"
+        },
+        {
+            "name": "QCarPot",
+            "type": "catchment",
+            "flow": "flowQCarPot"
+        },
+       {
+            "name": "QTransito1",
+            "type": "catchment",
+            "flow": "flowQTransito1"
+        },
+       {
+            "name": "QTransito2",
+            "type": "catchment",
+            "flow": "flowQTransito2"
+        },
+       {
+            "name": "QTransito3",
+            "type": "catchment",
+            "flow": "flowQTransito3"
+        },
+        {
+            "name": "QTransito4",
+            "type": "catchment",
+            "flow": "flowQTransito4"
+        },
+        {
+            "name": "QQuebChan",
+            "type": "catchment",
+            "flow": "flowQQuebChan"
+        },
+       {
+            "name": "QChollay",
+            "type": "catchment",
+            "flow": "flowQChollay"
+        },
+       {
+            "name": "QLagunaChica",
+            "type": "catchment",
+            "flow": "flowQLagunaChica"
+        },
+      {
+            "name": "QValeriano",
+            "type": "catchment",
+            "flow": "flowQValeriano"
+        },
+      {
+            "name": "QLagunaGrande",
+            "type": "catchment",
+            "flow": "flowQLagunaGrande"
+        },
+        {"name": "entradaLagunaGrande",
+            "type": "link",
+            "cost": -100
+        },
+        {"name": "confValerianoLagunaGrande",
+            "type": "link",
+            "cost": -100
+        },
+        {"name": "entradaLagunaChica",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entradaQValeriano",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entregaDdaCorral",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entradaQChollay",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entregaDdaChollay",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entradaTransito1",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entregaCanalZR2_1",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entradaTransito1",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entradaTransito2",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entregaDdaTransito",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entregaCanalZR2_1",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entradaQuebChan",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entradaTransito3",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entregaCanalZR2_2",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entradaTransito4",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "conflCarmenTrans",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entradaQCarPot",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entradaQCarHu1",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entregaCanalZR1_1",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entradaQCarHu4",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entradaQCarHu2",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entradaQCarHu3",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entregaQuebElCarrizo",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entregaCanalZR1_2",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "conflCarmenTrans",
+            "type": "link",
+            "cost": -100
+        },
+       {"name": "entregaCanalZR3",
+            "type": "link",
+            "cost": -100
+        }
+    ],
+    "edges": [
+        ["QLagunaGrande", "entradaLagunaGrande"],
+        ["entradaLagunaGrande", "confValerianoLagunaGrande"],
+        ["QValeriano", "entradaQValeriano"],
+        ["entradaQValeriano", "entradaLagunaChica"],
+        ["QLagunaChica", "entradaLagunaChica"],
+        ["entradaLagunaChica", "confValerianoLagunaGrande"],
+        ["confValerianoLagunaGrande", "entregaDdaCorral"],
+        ["entregaDdaCorral", "DdaCorral"],
+        ["entregaDdaCorral", "entradaQChollay"],
+        ["QChollay", "entradaQChollay"],
+        ["entradaQChollay", "entregaDdaChollay"],
+        ["entregaDdaChollay", "DdaChollay"],
+        ["entregaDdaChollay", "entradaTransito1"],
+        ["entradaTransito1", "entregaDdaTransito"],
+        ["QTransito1", "entradaTransito1"],
+        ["entregaDdaTransito", "DdaTransito"],
+        ["entregaDdaTransito", "entregaCanalZR2_1"],
+        ["entregaCanalZR2_1", "DdaCanalZR2_1"],
+        ["entregaCanalZR2_1", "entradaTransito2"],
+        ["QTransito2", "entradaTransito2"],
+        ["entradaTransito2", "entradaQuebChan"],
+        ["QQuebChan", "entradaQuebChan"],
+        ["entradaQuebChan", "entradaTransito3"],
+        ["QTransito3", "entradaTransito3"],
+        ["entradaTransito3", "entregaCanalZR2_2"],
+        ["entregaCanalZR2_2", "DdaCanalZR2_2"],
+        ["entregaCanalZR2_2", "entradaTransito4"],
+        ["QTransito4", "entradaTransito4"],
+        ["entradaTransito4", "conflCarmenTrans"],
+        ["QCarPot", "entradaQCarPot"],
+        ["QPot", "entradaQCarPot"],
+        ["entradaQCarPot", "entradaQCarHu1"],
+        ["QCarHu1","entradaQCarHu1"],
+        ["entradaQCarHu1", "entregaCanalZR1_1"],
+        ["entregaCanalZR1_1", "DdaCanalZR1_1"],
+        ["entregaCanalZR1_1", "entradaQCarHu4"],
+        ["QCarHu4", "entradaQCarHu4"],
+        ["entradaQCarHu4", "entradaQCarHu2"],
+        ["QCarHu2", "entradaQCarHu2"],
+        ["entradaQCarHu2", "entradaQCarHu3"],
+        ["QCarHu3", "entradaQCarHu3"],
+        ["entradaQCarHu3", "entregaQuebElCarrizo"],
+        ["entregaQuebElCarrizo", "DdaQuebElCarrizo"],
+        ["entregaQuebElCarrizo", "entregaCanalZR1_2"],
+        ["entregaCanalZR1_2", "DdaCanalZR1_2"],
+        ["entregaCanalZR1_2", "conflCarmenTrans"],
+        ["conflCarmenTrans","entregaCanalZR3"],
+        ["entregaCanalZR3", "DdaCanalZR3"],
+        ["entregaCanalZR3","EmbSantaJuana"]
+    ],
+     "recorders": {
+          "DdaCanalZR1_2": {
+          "type": "numpyarraynoderecorder",
+          "node": "DdaCanalZR1_2"
+        },
+          "EmbSantaJuana": {
+          "type": "numpyarraynoderecorder",
+          "node": "EmbSantaJuana"
+        },
+          "DdaCanalZR3": {
+          "type": "numpyarraynoderecorder",
+          "node": "DdaCanalZR3"
+        }    
+    },
+    "parameters": {
+        "flowDdaCorral": {
+        "type": "dataframe",
+        "url": "data/QSalidasCanalesm3day.csv",
+          "column": "Transmission Link from Withdrawal Node 40 to DAAsup_QuebElCorral",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+       "flowDdaChollay": {
+        "type": "dataframe",
+        "url": "data/QSalidasCanalesm3day.csv",
+          "column": "Transmission Link from Withdrawal Node 39 to DAAsup_Chollay",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+       "flowDdaTransito": {
+        "type": "dataframe",
+        "url": "data/QSalidasCanalesm3day.csv",
+          "column": "Transmission Link from Withdrawal Node 41 to DAAsup_Transito",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowCanalZR1_1": {
+        "type": "dataframe",
+        "url": "data/QSalidasCanalesm3day.csv",
+          "column": "Transmission Link from Withdrawal Node 1 to CanalZR1_1",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowCanalZR1_2": {
+        "type": "dataframe",
+        "url": "data/QSalidasCanalesm3day.csv",
+          "column": "Transmission Link from Withdrawal Node 2 to CanalZR1_2",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowQuebElCarrizo": {
+        "type": "dataframe",
+        "url": "data/QSalidasCanalesm3day.csv",
+          "column": "Transmission Link from Withdrawal Node 42 to Daasup_QuebElCarrizo",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowCanalZR1_1": {
+        "type": "dataframe",
+        "url": "data/QSalidasCanalesm3day.csv",
+          "column": "Transmission Link from Withdrawal Node 1 to CanalZR1_1",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowCanalZR2_1": {
+        "type": "dataframe",
+        "url": "data/QSalidasCanalesm3day.csv",
+          "column": "Transmission Link from Withdrawal Node 7 to CanalZR2_1",
+          "index_col": "Date",
+          "parse_dates": true
+        },   
+        "flowCanalZR2_2": {
+        "type": "dataframe",
+        "url": "data/QSalidasCanalesm3day.csv",
+          "column": "Transmission Link from Withdrawal Node 10 to CanalZR2_2",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowCanalZR3": {
+        "type": "dataframe",
+        "url": "data/QSalidasCanalesm3day.csv",
+          "column": "Transmission Link from Withdrawal Node 13 to CanalZR3",
+          "index_col": "Date",
+          "parse_dates": true
+        },       
+        "flowQLagunaGrande": {
+        "type": "dataframe",
+        "url": "data/QEntradasm3day.csv",
+         "column": "Runoff/Infiltration from R_Lag_Grande to R_Lag_Grande",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowQCarHu1": {
+        "type": "dataframe",
+        "url": "data/QEntradasm3day.csv",
+         "column": "Runoff/Infiltration from R_Car_Hu to R_Car_Hu_1",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowQCarHu2": {
+        "type": "dataframe",
+        "url": "data/QEntradasm3day.csv",
+         "column": "Runoff/Infiltration from R_Car_Hu to R_Car_Hu 2",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowQCarHu3": {
+        "type": "dataframe",
+        "url": "data/QEntradasm3day.csv",
+         "column": "Runoff/Infiltration from R_Car_Hu to R_Car_Hu 3",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowQCarHu4": {
+        "type": "dataframe",
+        "url": "data/QEntradasm3day.csv",
+         "column": "Runoff/Infiltration from R_Car_Hu to R_Car_Hu 4",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowQPot": {
+        "type": "dataframe",
+        "url": "data/QEntradasm3day.csv",
+         "column": "Runoff/Infiltration from R_Pot to R_Pot",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowQCarPot": {
+        "type": "dataframe",
+        "url": "data/QEntradasm3day.csv",
+         "column": "Runoff/Infiltration from R_Car_Pot to R_Car_Pot",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowQTransito1": {
+        "type": "dataframe",
+        "url": "data/QEntradasm3day.csv",
+         "column": "Runoff/Infiltration from R_Transito to R_SubTra1",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowQTransito2": {
+        "type": "dataframe",
+        "url": "data/QEntradasm3day.csv",
+         "column": "Runoff/Infiltration from R_Transito to R_SubTra2",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowQTransito3": {
+        "type": "dataframe",
+        "url": "data/QEntradasm3day.csv",
+         "column": "Runoff/Infiltration from R_Transito to R_SubTra3",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowQTransito4": {
+        "type": "dataframe",
+        "url": "data/QEntradasm3day.csv",
+         "column": "Runoff/Infiltration from R_Transito to R_SubTra4",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowQQuebChan": {
+        "type": "dataframe",
+        "url": "data/QEntradasm3day.csv",
+         "column": "Runoff/Infiltration from Q_Chanch to Q_Chanch",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowQChollay": {
+        "type": "dataframe",
+        "url": "data/QEntradasm3day.csv",
+         "column": "Runoff/Infiltration from R_Chollay to R_Chollay",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowQLagunaChica": {
+        "type": "dataframe",
+        "url": "data/QEntradasm3day.csv",
+         "column": "Runoff/Infiltration from R_Lag_Ch to R_Emb_Ch",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "flowQValeriano": {
+        "type": "dataframe",
+        "url": "data/QEntradasm3day.csv",
+         "column": "Runoff/Infiltration from R_Vel to R_Vel",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+        "diasdelmes": {
+            "type":"monthlyprofile",
+            "values": [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+        },
+        "conversion": {
+            "type": "constant",
+            "value": 86400
+        }
+    }
+}
