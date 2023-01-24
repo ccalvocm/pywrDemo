@@ -4,3 +4,6 @@ Pruebas de asignación de agua en pywr. Cuencas modeladas:
 ## Estero Codegua
 ## Río Huasco
 En trabajo
+
+![alt text](https://uc6771f1df8bda808713e3579c46.previews.dropboxusercontent.com/p/thumb/ABwlY5nLhPReoFAvYiNwUKw0vr1tJLLk9fIvnevd73fLfkTW3lqtd53H3qwYiCCSqhNjS5H6JUWGOzs0OjPMrMapixfdkGk3MkI8XZI-J7vMZ5RcFXmUC9CJEm2rcT36seRLuF0idBeev_dn4BTPpCON5MQqz0JHHykch7x8cbvCyc1vuBZedtpi-scrtB1mj0FHrZZy-GKdML8mdsqDTh9hFQZQrnoyO2kLjaoILDxvyVXzosjpZHKoE_jkR4oGXMYDKnvyFTiw0DP5nFPeLm3iw6WK4PcjhrlGL63YA-C70-jkU_A5coVT2aF9IjUuYDGnU7a6Dyt_06vc8tG4buJM2vhCIMPMR8mJwP6U3TpHduaLuMrlB7gZ_UMnDTU0OletfUe2y0WmC1nNx_fJKum089OWsFi-OMCfDaz8UIm4OA/p.png)
+```
