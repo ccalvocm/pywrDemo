@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+    .node {
+    stroke-width: 1.5px;
+    stroke: #333;
+    fill: grey;
+}
+
+.node-text {
+    pointer-events: none;
+    font: 10px sans-serif;
+}
+
+.node:hover {
+    stroke-width: 2.5px;
+    stroke: #222;
+}
+.node-input {
+    fill: dodgerblue;
+}
+.node-link {
+    fill: grey;
+}
+.node-output {
+    fill: gold;
+}
+.node-storage {
+    fill: firebrick;
+}
+.node-reservoir {
+    fill: firebrick;
+}
+
+.table-tooltip{
+    position: relative;
+    border: solid 1px grey;
+    background-color: white;
+    pointer-events: none;
+    font: 10px sans-serif;
+    color: black;
+    z-index: 99999;
+}
+
+    .title{
+        text-align: center;
+    }
+
+    .pywr_schematic{
+        margin: 0 auto;
+        outline: 1px solid black;
+    }
+
+    .table-tooltip{
+        margin: 0 auto;
+        margin-top: 10px;
+        font: 12px sans-serif;
+    }    
+</style>
+<body>
+     <h1 class="title">Modelo Cuenca del Rio Huasco</h1>
+    <div class="schematic"></div>
+<script src=https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js></script> 
+<script>
+    // javascript jinja2 template for drawing a directional graph
+
+require.config({paths: {d3: 'https://d3js.org/d3.v5.min'}});
+  
+require(["d3"], function(d3) {
+    const graph = {'nodes': [{'name': 'DdaCanalZR2_1', 'clss': ['output'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[88824.384]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowCanalZR2_1 - DataFrameParameter'}, {'attribute': 'name', 'value': 'DdaCanalZR2_1'}, {'attribute': 'prev_flow', 'value': '[88824.384]'}]}, {'name': 'DdaCanalZR2_2', 'clss': ['output'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[13350.2688]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowCanalZR2_2 - DataFrameParameter'}, {'attribute': 'name', 'value': 'DdaCanalZR2_2'}, {'attribute': 'prev_flow', 'value': '[13350.2688]'}]}, {'name': 'DdaCanalZR3', 'clss': ['output'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[8240.59008]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowCanalZR3 - DataFrameParameter'}, {'attribute': 'name', 'value': 'DdaCanalZR3'}, {'attribute': 'prev_flow', 'value': '[8240.59008]'}]}, {'name': 'DdaCanalZR1_2', 'clss': ['output'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[21164.8896]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowCanalZR1_2 - DataFrameParameter'}, {'attribute': 'name', 'value': 'DdaCanalZR1_2'}, {'attribute': 'prev_flow', 'value': '[21164.8896]'}]}, {'name': 'DdaQuebElCarrizo', 'clss': ['output'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[170.35488]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowQuebElCarrizo - DataFrameParameter'}, {'attribute': 'name', 'value': 'DdaQuebElCarrizo'}, {'attribute': 'prev_flow', 'value': '[170.35488]'}]}, {'name': 'DdaCanalZR1_1', 'clss': ['output'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[38892.2688]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowCanalZR1_1 - DataFrameParameter'}, {'attribute': 'name', 'value': 'DdaCanalZR1_1'}, {'attribute': 'prev_flow', 'value': '[38892.2688]'}]}, {'name': 'DdaTransito', 'clss': ['output'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[33.4451808]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowDdaTransito - DataFrameParameter'}, {'attribute': 'name', 'value': 'DdaTransito'}, {'attribute': 'prev_flow', 'value': '[33.4451808]'}]}, {'name': 'DdaChollay', 'clss': ['output'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[6062.65344]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowDdaChollay - DataFrameParameter'}, {'attribute': 'name', 'value': 'DdaChollay'}, {'attribute': 'prev_flow', 'value': '[6062.65344]'}]}, {'name': 'DdaCorral', 'clss': ['output'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowDdaCorral - DataFrameParameter'}, {'attribute': 'name', 'value': 'DdaCorral'}]}, {'name': 'QCarHu1', 'clss': ['input', 'catchment'], 'attributes': [{'attribute': 'flow', 'value': '[17861.3856]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowQCarHu1 - DataFrameParameter'}, {'attribute': 'min_flow', 'value': 'flowQCarHu1 - DataFrameParameter'}, {'attribute': 'name', 'value': 'QCarHu1'}, {'attribute': 'prev_flow', 'value': '[17861.3856]'}]}, {'name': 'QCarHu2', 'clss': ['input', 'catchment'], 'attributes': [{'attribute': 'flow', 'value': '[44653.248]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowQCarHu2 - DataFrameParameter'}, {'attribute': 'min_flow', 'value': 'flowQCarHu2 - DataFrameParameter'}, {'attribute': 'name', 'value': 'QCarHu2'}, {'attribute': 'prev_flow', 'value': '[44653.248]'}]}, {'name': 'QCarHu3', 'clss': ['input', 'catchment'], 'attributes': [{'attribute': 'flow', 'value': '[44653.248]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowQCarHu3 - DataFrameParameter'}, {'attribute': 'min_flow', 'value': 'flowQCarHu3 - DataFrameParameter'}, {'attribute': 'name', 'value': 'QCarHu3'}, {'attribute': 'prev_flow', 'value': '[44653.248]'}]}, {'name': 'QCarHu4', 'clss': ['input', 'catchment'], 'attributes': [{'attribute': 'flow', 'value': '[71445.456]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowQCarHu4 - DataFrameParameter'}, {'attribute': 'min_flow', 'value': 'flowQCarHu4 - DataFrameParameter'}, {'attribute': 'name', 'value': 'QCarHu4'}, {'attribute': 'prev_flow', 'value': '[71445.456]'}]}, {'name': 'QPot', 'clss': ['input', 'catchment'], 'attributes': [{'attribute': 'flow', 'value': '[25782.4512]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowQPot - DataFrameParameter'}, {'attribute': 'min_flow', 'value': 'flowQPot - DataFrameParameter'}, {'attribute': 'name', 'value': 'QPot'}, {'attribute': 'prev_flow', 'value': '[25782.4512]'}]}, {'name': 'QCarPot', 'clss': ['input', 'catchment'], 'attributes': [{'attribute': 'flow', 'value': '[36913.536]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowQCarPot - DataFrameParameter'}, {'attribute': 'min_flow', 'value': 'flowQCarPot - DataFrameParameter'}, {'attribute': 'name', 'value': 'QCarPot'}, {'attribute': 'prev_flow', 'value': '[36913.536]'}]}, {'name': 'QTransito1', 'clss': ['input', 'catchment'], 'attributes': [{'attribute': 'flow', 'value': '[52630.992]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowQTransito1 - DataFrameParameter'}, {'attribute': 'min_flow', 'value': 'flowQTransito1 - DataFrameParameter'}, {'attribute': 'name', 'value': 'QTransito1'}, {'attribute': 'prev_flow', 'value': '[52630.992]'}]}, {'name': 'QTransito2', 'clss': ['input', 'catchment'], 'attributes': [{'attribute': 'flow', 'value': '[21052.4832]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowQTransito2 - DataFrameParameter'}, {'attribute': 'min_flow', 'value': 'flowQTransito2 - DataFrameParameter'}, {'attribute': 'name', 'value': 'QTransito2'}, {'attribute': 'prev_flow', 'value': '[21052.4832]'}]}, {'name': 'QTransito3', 'clss': ['input', 'catchment'], 'attributes': [{'attribute': 'flow', 'value': '[21052.4832]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowQTransito3 - DataFrameParameter'}, {'attribute': 'min_flow', 'value': 'flowQTransito3 - DataFrameParameter'}, {'attribute': 'name', 'value': 'QTransito3'}, {'attribute': 'prev_flow', 'value': '[21052.4832]'}]}, {'name': 'QTransito4', 'clss': ['input', 'catchment'], 'attributes': [{'attribute': 'flow', 'value': '[10526.1984]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowQTransito4 - DataFrameParameter'}, {'attribute': 'min_flow', 'value': 'flowQTransito4 - DataFrameParameter'}, {'attribute': 'name', 'value': 'QTransito4'}, {'attribute': 'prev_flow', 'value': '[10526.1984]'}]}, {'name': 'QQuebChan', 'clss': ['input', 'catchment'], 'attributes': [{'attribute': 'flow', 'value': '[34878.7296]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowQQuebChan - DataFrameParameter'}, {'attribute': 'min_flow', 'value': 'flowQQuebChan - DataFrameParameter'}, {'attribute': 'name', 'value': 'QQuebChan'}, {'attribute': 'prev_flow', 'value': '[34878.7296]'}]}, {'name': 'QChollay', 'clss': ['input', 'catchment'], 'attributes': [{'attribute': 'flow', 'value': '[78157.0944]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowQChollay - DataFrameParameter'}, {'attribute': 'min_flow', 'value': 'flowQChollay - DataFrameParameter'}, {'attribute': 'name', 'value': 'QChollay'}, {'attribute': 'prev_flow', 'value': '[78157.0944]'}]}, {'name': 'QLagunaChica', 'clss': ['input', 'catchment'], 'attributes': [{'attribute': 'flow', 'value': '[7996.25952]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowQLagunaChica - DataFrameParameter'}, {'attribute': 'min_flow', 'value': 'flowQLagunaChica - DataFrameParameter'}, {'attribute': 'name', 'value': 'QLagunaChica'}, {'attribute': 'prev_flow', 'value': '[7996.25952]'}]}, {'name': 'rLagunaChicaAbajo', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[53797.89952]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'rLagunaChicaAbajo'}, {'attribute': 'prev_flow', 'value': '[53797.89952]'}]}, {'name': 'QValeriano', 'clss': ['input', 'catchment'], 'attributes': [{'attribute': 'flow', 'value': '[45800.64]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowQValeriano - DataFrameParameter'}, {'attribute': 'min_flow', 'value': 'flowQValeriano - DataFrameParameter'}, {'attribute': 'name', 'value': 'QValeriano'}, {'attribute': 'prev_flow', 'value': '[45800.64]'}]}, {'name': 'QLagunaGrande', 'clss': ['input', 'catchment'], 'attributes': [{'attribute': 'flow', 'value': '[14956.7904]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowQLagunaGrande - DataFrameParameter'}, {'attribute': 'min_flow', 'value': 'flowQLagunaGrande - DataFrameParameter'}, {'attribute': 'name', 'value': 'QLagunaGrande'}, {'attribute': 'prev_flow', 'value': '[14956.7904]'}]}, {'name': 'rLagunaGrandeAbajo', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[14956.7904]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'rLagunaGrandeAbajo'}, {'attribute': 'prev_flow', 'value': '[14956.7904]'}]}, {'name': 'confValerianoLagunaGrande', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[68754.68992]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'confValerianoLagunaGrande'}, {'attribute': 'prev_flow', 'value': '[68754.68992]'}]}, {'name': 'entradaQValeriano', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[45800.64]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'entradaQValeriano'}, {'attribute': 'prev_flow', 'value': '[45800.64]'}]}, {'name': 'entregaDdaCorral', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[68754.68992]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'entregaDdaCorral'}, {'attribute': 'prev_flow', 'value': '[68754.68992]'}]}, {'name': 'entradaQChollay', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[146911.78432]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'entradaQChollay'}, {'attribute': 'prev_flow', 'value': '[146911.78432]'}]}, {'name': 'entregaDdaChollay', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-1000.0'}, {'attribute': 'flow', 'value': '[146911.78432]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'entregaDdaChollay'}, {'attribute': 'prev_flow', 'value': '[146911.78432]'}]}, {'name': 'entradaTransito1', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[193480.12288]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'entradaTransito1'}, {'attribute': 'prev_flow', 'value': '[193480.12288]'}]}, {'name': 'entregaCanalZR2_1', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[193446.6776992]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'entregaCanalZR2_1'}, {'attribute': 'prev_flow', 'value': '[193446.6776992]'}]}, {'name': 'entradaTransito2', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[125674.7768992]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'entradaTransito2'}, {'attribute': 'prev_flow', 'value': '[125674.7768992]'}]}, {'name': 'entregaDdaTransito', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[193480.12288]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'entregaDdaTransito'}, {'attribute': 'prev_flow', 'value': '[193480.12288]'}]}, {'name': 'entradaQuebChan', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[160553.5064992]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'entradaQuebChan'}, {'attribute': 'prev_flow', 'value': '[160553.5064992]'}]}, {'name': 'entradaTransito3', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[181605.9896992]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'entradaTransito3'}, {'attribute': 'prev_flow', 'value': '[181605.9896992]'}]}, {'name': 'entregaCanalZR2_2', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[181605.9896992]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'entregaCanalZR2_2'}, {'attribute': 'prev_flow', 'value': '[181605.9896992]'}]}, {'name': 'entradaTransito4', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[178781.9192992]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'entradaTransito4'}, {'attribute': 'prev_flow', 'value': '[178781.9192992]'}]}, {'name': 'conflCarmenTrans', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[359863.7308192]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'conflCarmenTrans'}, {'attribute': 'prev_flow', 'value': '[359863.7308192]'}]}, {'name': 'entradaQCarPot', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[62695.9872]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'entradaQCarPot'}, {'attribute': 'prev_flow', 'value': '[62695.9872]'}]}, {'name': 'entradaQCarHu1', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[80557.3728]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'entradaQCarHu1'}, {'attribute': 'prev_flow', 'value': '[80557.3728]'}]}, {'name': 'entregaCanalZR1_1', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[80557.3728]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'entregaCanalZR1_1'}, {'attribute': 'prev_flow', 'value': '[80557.3728]'}]}, {'name': 'entradaQCarHu4', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[113110.56]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'entradaQCarHu4'}, {'attribute': 'prev_flow', 'value': '[113110.56]'}]}, {'name': 'entradaQCarHu2', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[157763.808]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'entradaQCarHu2'}, {'attribute': 'prev_flow', 'value': '[157763.808]'}]}, {'name': 'entradaQCarHu3', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[202417.056]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'entradaQCarHu3'}, {'attribute': 'prev_flow', 'value': '[202417.056]'}]}, {'name': 'entregaQuebElCarrizo', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[202417.056]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'entregaQuebElCarrizo'}, {'attribute': 'prev_flow', 'value': '[202417.056]'}]}, {'name': 'entregaCanalZR1_2', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[202246.70112]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'entregaCanalZR1_2'}, {'attribute': 'prev_flow', 'value': '[202246.70112]'}]}, {'name': 'entregaCanalZR3', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[359863.7308192]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'entregaCanalZR3'}, {'attribute': 'prev_flow', 'value': '[359863.7308192]'}, {'attribute': 'recorders', 'value': '<NumpyArrayNodeRecorder on <Link "entregaCanalZR3"> "entregaCanalZR3">'}]}, {'name': 'EmbSantaJuana', 'clss': ['storage'], 'attributes': [{'attribute': 'cost', 'value': '1001.0'}, {'attribute': 'current_pc', 'value': '[0.95567554]'}, {'attribute': 'flow', 'value': '[-20949.40753584]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'initial_volume_pc', 'value': 'nan'}, {'attribute': 'max_volume', 'value': '169880000.0'}, {'attribute': 'name', 'value': 'EmbSantaJuana'}, {'attribute': 'prev_flow', 'value': '[-20949.40753584]'}, {'attribute': 'recorders', 'value': '<NumpyArrayStorageRecorder on <Storage "EmbSantaJuana"> "SantaJuanaStorage">'}, {'attribute': 'volume', 'value': '[1.62350161e+08]'}]}, {'name': 'EvapSantaJuana', 'clss': ['output'], 'attributes': [{'attribute': 'cost', 'value': '-102.0'}, {'attribute': 'flow', 'value': '[24812.15083504]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'StaJuanaEvaporation - AggregatedParameter'}, {'attribute': 'name', 'value': 'EvapSantaJuana'}, {'attribute': 'prev_flow', 'value': '[24812.15083504]'}, {'attribute': 'recorders', 'value': '<NumpyArrayNodeRecorder on <Output "EvapSantaJuana"> "EvapSantaJuana">'}]}, {'name': 'EvapLagunaGrande', 'clss': ['output'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'LagunaGrandeEvaporation - AggregatedParameter'}, {'attribute': 'name', 'value': 'EvapLagunaGrande'}]}, {'name': 'EvapLagunaChica', 'clss': ['output'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'LagunaChicaEvaporation - AggregatedParameter'}, {'attribute': 'name', 'value': 'EvapLagunaChica'}]}, {'name': 'rStaJuanaAbajo', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[375866.66304]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': '13200000.0'}, {'attribute': 'name', 'value': 'rStaJuanaAbajo'}, {'attribute': 'prev_flow', 'value': '[375866.66304]'}, {'attribute': 'recorders', 'value': '<NumpyArrayNodeRecorder on <Link "rStaJuanaAbajo"> "rStaJuanaAbajo"><NodeRecorder on <Link "rStaJuanaAbajo"> "SantaJuanaDeliver">'}]}, {'name': 'DdaCanalZR4', 'clss': ['output'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[31430.16]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowCanalZR41 - DataFrameParameter'}, {'attribute': 'name', 'value': 'DdaCanalZR4'}, {'attribute': 'prev_flow', 'value': '[31430.16]'}]}, {'name': 'EntradaQuebCam', 'clss': ['input', 'catchment'], 'attributes': [{'attribute': 'flow', 'value': '[28106.2656]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowQuebCam - DataFrameParameter'}, {'attribute': 'min_flow', 'value': 'flowQuebCam - DataFrameParameter'}, {'attribute': 'name', 'value': 'EntradaQuebCam'}, {'attribute': 'prev_flow', 'value': '[28106.2656]'}]}, {'name': 'entregaCanalZR41', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[375866.66304]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'entregaCanalZR41'}, {'attribute': 'prev_flow', 'value': '[375866.66304]'}]}, {'name': 'entradaHonda', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[364684.68864]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'entradaHonda'}, {'attribute': 'prev_flow', 'value': '[364684.68864]'}]}, {'name': 'EntradaQuebHonda', 'clss': ['input', 'catchment'], 'attributes': [{'attribute': 'flow', 'value': '[20248.1856]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowQuebHonda - DataFrameParameter'}, {'attribute': 'min_flow', 'value': 'flowQuebHonda - DataFrameParameter'}, {'attribute': 'name', 'value': 'EntradaQuebHonda'}, {'attribute': 'prev_flow', 'value': '[20248.1856]'}]}, {'name': 'entregaCanalZR42', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[364684.68864]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'entregaCanalZR42'}, {'attribute': 'prev_flow', 'value': '[364684.68864]'}]}, {'name': 'DdaCanalZR42', 'clss': ['output'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[60945.9552]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowCanalZR42 - DataFrameParameter'}, {'attribute': 'name', 'value': 'DdaCanalZR42'}, {'attribute': 'prev_flow', 'value': '[60945.9552]'}]}, {'name': 'EntradaQ_S_N_1', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[313781.95584]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'EntradaQ_S_N_1'}, {'attribute': 'prev_flow', 'value': '[313781.95584]'}]}, {'name': 'Q_S_N_1', 'clss': ['input', 'catchment'], 'attributes': [{'attribute': 'flow', 'value': '[10043.2224]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowQ_S_N_1 - DataFrameParameter'}, {'attribute': 'min_flow', 'value': 'flowQ_S_N_1 - DataFrameParameter'}, {'attribute': 'name', 'value': 'Q_S_N_1'}, {'attribute': 'prev_flow', 'value': '[10043.2224]'}]}, {'name': 'entregaCanalZR5', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[313781.95584]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'entregaCanalZR5'}, {'attribute': 'prev_flow', 'value': '[313781.95584]'}]}, {'name': 'DdaCanalZR5', 'clss': ['output'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[231961.536]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowCanalZR5 - DataFrameParameter'}, {'attribute': 'name', 'value': 'DdaCanalZR5'}, {'attribute': 'prev_flow', 'value': '[231961.536]'}]}, {'name': 'EntradaQ_AguaV', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[101729.94336]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'EntradaQ_AguaV'}, {'attribute': 'prev_flow', 'value': '[101729.94336]'}]}, {'name': 'Q_AguaV', 'clss': ['input', 'catchment'], 'attributes': [{'attribute': 'flow', 'value': '[6773.09472]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowQuebAguaV - DataFrameParameter'}, {'attribute': 'min_flow', 'value': 'flowQuebAguaV - DataFrameParameter'}, {'attribute': 'name', 'value': 'Q_AguaV'}, {'attribute': 'prev_flow', 'value': '[6773.09472]'}]}, {'name': 'Q_Mait', 'clss': ['input', 'catchment'], 'attributes': [{'attribute': 'flow', 'value': '[13136.4288]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowQuebMait - DataFrameParameter'}, {'attribute': 'min_flow', 'value': 'flowQuebMait - DataFrameParameter'}, {'attribute': 'name', 'value': 'Q_Mait'}, {'attribute': 'prev_flow', 'value': '[13136.4288]'}]}, {'name': 'end', 'clss': ['output'], 'attributes': [{'attribute': 'cost', 'value': '10000.0'}, {'attribute': 'flow', 'value': '[2843.64]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'end'}, {'attribute': 'prev_flow', 'value': '[2843.64]'}, {'attribute': 'recorders', 'value': '<NumpyArrayNodeRecorder on <Output "end"> "Desembocadura">'}]}, {'name': 'entregaCanalZR6', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[101729.94336]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'entregaCanalZR6'}, {'attribute': 'prev_flow', 'value': '[101729.94336]'}]}, {'name': 'DdaCanalZR6', 'clss': ['output'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[20377.2672]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowCanalZR6 - DataFrameParameter'}, {'attribute': 'name', 'value': 'DdaCanalZR6'}, {'attribute': 'prev_flow', 'value': '[20377.2672]'}]}, {'name': 'EntradaQ_S_N_2', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[88421.2848]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'EntradaQ_S_N_2'}, {'attribute': 'prev_flow', 'value': '[88421.2848]'}]}, {'name': 'Q_S_N_2', 'clss': ['input', 'catchment'], 'attributes': [{'attribute': 'flow', 'value': '[7068.60864]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowQ_S_N_2 - DataFrameParameter'}, {'attribute': 'min_flow', 'value': 'flowQ_S_N_2 - DataFrameParameter'}, {'attribute': 'name', 'value': 'Q_S_N_2'}, {'attribute': 'prev_flow', 'value': '[7068.60864]'}]}, {'name': 'EntradaQ_S_N_7', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[93426.9984]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'EntradaQ_S_N_7'}, {'attribute': 'prev_flow', 'value': '[93426.9984]'}]}, {'name': 'Q_S_N_7', 'clss': ['input', 'catchment'], 'attributes': [{'attribute': 'flow', 'value': '[5005.7136]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowQ_S_N_7 - DataFrameParameter'}, {'attribute': 'min_flow', 'value': 'flowQ_S_N_7 - DataFrameParameter'}, {'attribute': 'name', 'value': 'Q_S_N_7'}, {'attribute': 'prev_flow', 'value': '[5005.7136]'}]}, {'name': 'EntradaQ_S_N_3', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[96212.21472]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'EntradaQ_S_N_3'}, {'attribute': 'prev_flow', 'value': '[96212.21472]'}]}, {'name': 'Q_S_N_3', 'clss': ['input', 'catchment'], 'attributes': [{'attribute': 'flow', 'value': '[2785.21632]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowQ_S_N_3 - DataFrameParameter'}, {'attribute': 'min_flow', 'value': 'flowQ_S_N_3 - DataFrameParameter'}, {'attribute': 'name', 'value': 'Q_S_N_3'}, {'attribute': 'prev_flow', 'value': '[2785.21632]'}]}, {'name': 'entregaCanalZR7', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[96212.21472]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'entregaCanalZR7'}, {'attribute': 'prev_flow', 'value': '[96212.21472]'}]}, {'name': 'DdaCanalZR7', 'clss': ['output'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[28021.9392]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowCanalZR7 - DataFrameParameter'}, {'attribute': 'name', 'value': 'DdaCanalZR7'}, {'attribute': 'prev_flow', 'value': '[28021.9392]'}]}, {'name': 'EntradaQ_AS1', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[71819.88768]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'EntradaQ_AS1'}, {'attribute': 'prev_flow', 'value': '[71819.88768]'}]}, {'name': 'Q_AS1', 'clss': ['input', 'catchment'], 'attributes': [{'attribute': 'flow', 'value': '[3629.61216]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowQ_AS1 - DataFrameParameter'}, {'attribute': 'min_flow', 'value': 'flowQ_AS1 - DataFrameParameter'}, {'attribute': 'name', 'value': 'Q_AS1'}, {'attribute': 'prev_flow', 'value': '[3629.61216]'}]}, {'name': 'EntradaQ_S_N_5', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[74421.64224]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'EntradaQ_S_N_5'}, {'attribute': 'prev_flow', 'value': '[74421.64224]'}]}, {'name': 'Q_S_N_5', 'clss': ['input', 'catchment'], 'attributes': [{'attribute': 'flow', 'value': '[2601.75456]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowQ_S_N_5 - DataFrameParameter'}, {'attribute': 'min_flow', 'value': 'flowQ_S_N_5 - DataFrameParameter'}, {'attribute': 'name', 'value': 'Q_S_N_5'}, {'attribute': 'prev_flow', 'value': '[2601.75456]'}]}, {'name': 'EntradaQ_AS2', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[78051.2544]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'EntradaQ_AS2'}, {'attribute': 'prev_flow', 'value': '[78051.2544]'}]}, {'name': 'Q_AS2', 'clss': ['input', 'catchment'], 'attributes': [{'attribute': 'flow', 'value': '[3629.61216]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowQ_AS2 - DataFrameParameter'}, {'attribute': 'min_flow', 'value': 'flowQ_AS2 - DataFrameParameter'}, {'attribute': 'name', 'value': 'Q_AS2'}, {'attribute': 'prev_flow', 'value': '[3629.61216]'}]}, {'name': 'entregaCanalZR8', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[78051.2544]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'entregaCanalZR8'}, {'attribute': 'prev_flow', 'value': '[78051.2544]'}]}, {'name': 'DdaCanalZR8', 'clss': ['output'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[78051.2544]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowCanalZR8 - DataFrameParameter'}, {'attribute': 'name', 'value': 'DdaCanalZR8'}, {'attribute': 'prev_flow', 'value': '[78051.2544]'}]}, {'name': 'EntradaQ_S_N_6', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[2843.64]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'EntradaQ_S_N_6'}, {'attribute': 'prev_flow', 'value': '[2843.64]'}]}, {'name': 'Q_S_N_6', 'clss': ['input', 'catchment'], 'attributes': [{'attribute': 'flow', 'value': '[1370.25216]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowQ_S_N_6 - DataFrameParameter'}, {'attribute': 'min_flow', 'value': 'flowQ_S_N_6 - DataFrameParameter'}, {'attribute': 'name', 'value': 'Q_S_N_6'}, {'attribute': 'prev_flow', 'value': '[1370.25216]'}]}, {'name': 'EntradaQ_DelP', 'clss': ['link'], 'attributes': [{'attribute': 'cost', 'value': '-100.0'}, {'attribute': 'flow', 'value': '[1473.38784]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'inf'}, {'attribute': 'name', 'value': 'EntradaQ_DelP'}, {'attribute': 'prev_flow', 'value': '[1473.38784]'}]}, {'name': 'Q_DelP', 'clss': ['input', 'catchment'], 'attributes': [{'attribute': 'flow', 'value': '[1473.38784]'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'max_flow', 'value': 'flowQ_DelP - DataFrameParameter'}, {'attribute': 'min_flow', 'value': 'flowQ_DelP - DataFrameParameter'}, {'attribute': 'name', 'value': 'Q_DelP'}, {'attribute': 'prev_flow', 'value': '[1473.38784]'}]}, {'name': 'EmbLagunaChica', 'clss': ['storage'], 'attributes': [{'attribute': 'cost', 'value': '10000.0'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'initial_volume_pc', 'value': 'nan'}, {'attribute': 'max_volume', 'value': '3500000.0'}, {'attribute': 'name', 'value': 'EmbLagunaChica'}]}, {'name': 'EntradaLagunaChica', 'clss': ['input', 'catchment'], 'attributes': [{'attribute': 'flow', 'value': '[1.]'}, {'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'max_flow', 'value': '1.0'}, {'attribute': 'min_flow', 'value': '1.0'}, {'attribute': 'name', 'value': 'EntradaLagunaChica'}, {'attribute': 'prev_flow', 'value': '[1.]'}]}, {'name': 'EmbLagunaGrande', 'clss': ['storage'], 'attributes': [{'attribute': 'cost', 'value': '10000.0'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'initial_volume_pc', 'value': 'nan'}, {'attribute': 'max_volume', 'value': '7000000.0'}, {'attribute': 'name', 'value': 'EmbLagunaGrande'}]}, {'name': 'EntradaLagunaGrande', 'clss': ['input', 'catchment'], 'attributes': [{'attribute': 'has_constant_flows', 'value': 'True'}, {'attribute': 'has_fixed_cost', 'value': 'True'}, {'attribute': 'has_fixed_flows', 'value': 'True'}, {'attribute': 'name', 'value': 'EntradaLagunaGrande'}]}], 'links': [{'source': 9, 'target': 41}, {'source': 10, 'target': 44}, {'source': 11, 'target': 45}, {'source': 12, 'target': 43}, {'source': 13, 'target': 40}, {'source': 14, 'target': 40}, {'source': 15, 'target': 31}, {'source': 16, 'target': 33}, {'source': 17, 'target': 36}, {'source': 18, 'target': 38}, {'source': 19, 'target': 35}, {'source': 20, 'target': 29}, {'source': 21, 'target': 22}, {'source': 22, 'target': 26}, {'source': 23, 'target': 27}, {'source': 24, 'target': 25}, {'source': 25, 'target': 26}, {'source': 26, 'target': 28}, {'source': 27, 'target': 22}, {'source': 28, 'target': 8}, {'source': 28, 'target': 29}, {'source': 29, 'target': 30}, {'source': 30, 'target': 7}, {'source': 30, 'target': 31}, {'source': 31, 'target': 34}, {'source': 32, 'target': 0}, {'source': 32, 'target': 33}, {'source': 33, 'target': 35}, {'source': 34, 'target': 6}, {'source': 34, 'target': 32}, {'source': 35, 'target': 36}, {'source': 36, 'target': 37}, {'source': 37, 'target': 1}, {'source': 37, 'target': 38}, {'source': 38, 'target': 39}, {'source': 39, 'target': 48}, {'source': 40, 'target': 41}, {'source': 41, 'target': 42}, {'source': 42, 'target': 5}, {'source': 42, 'target': 43}, {'source': 43, 'target': 44}, {'source': 44, 'target': 45}, {'source': 45, 'target': 46}, {'source': 46, 'target': 4}, {'source': 46, 'target': 47}, {'source': 47, 'target': 3}, {'source': 47, 'target': 39}, {'source': 48, 'target': 2}, {'source': 48, 'target': 49}, {'source': 49, 'target': 50}, {'source': 49, 'target': 53}, {'source': 53, 'target': 56}, {'source': 55, 'target': 53}, {'source': 56, 'target': 54}, {'source': 56, 'target': 57}, {'source': 57, 'target': 59}, {'source': 58, 'target': 57}, {'source': 59, 'target': 60}, {'source': 59, 'target': 61}, {'source': 61, 'target': 63}, {'source': 62, 'target': 61}, {'source': 63, 'target': 64}, {'source': 63, 'target': 65}, {'source': 65, 'target': 69}, {'source': 66, 'target': 65}, {'source': 67, 'target': 65}, {'source': 69, 'target': 70}, {'source': 69, 'target': 71}, {'source': 71, 'target': 73}, {'source': 72, 'target': 71}, {'source': 73, 'target': 75}, {'source': 74, 'target': 73}, {'source': 75, 'target': 77}, {'source': 76, 'target': 75}, {'source': 77, 'target': 78}, {'source': 77, 'target': 79}, {'source': 79, 'target': 81}, {'source': 80, 'target': 79}, {'source': 81, 'target': 83}, {'source': 82, 'target': 81}, {'source': 83, 'target': 85}, {'source': 84, 'target': 83}, {'source': 85, 'target': 86}, {'source': 85, 'target': 89}, {'source': 87, 'target': 89}, {'source': 87, 'target': 68}, {'source': 88, 'target': 87}, {'source': 89, 'target': 87}, {'source': 90, 'target': 89}, {'source': 91, 'target': 52}, {'source': 91, 'target': 22}, {'source': 92, 'target': 91}, {'source': 93, 'target': 51}, {'source': 93, 'target': 25}, {'source': 94, 'target': 93}]};
+
+    const links = graph.links.map(d => Object.create(d));
+    const nodes = graph.nodes.map(d => Object.create(d));
+
+    const style = d3.selectAll(".schematic").append("style");
+    style.html("");
+
+    const div = d3.selectAll(".schematic").append("div").classed("pywr_schematic", true);
+
+    const width = 800,
+        height = 800;
+
+    const simulation = d3.forceSimulation(nodes)
+        .force("link", d3.forceLink(graph.links))
+        .force("charge", d3.forceManyBody().strength(-120))
+        .force('center', d3.forceCenter(width / 2, height / 2))
+        .force("x", d3.forceX())
+        .force("y", d3.forceY());
+
+    div.style("height", height+"px")
+    .style("width", width+"px");
+
+    const svg = div.append("svg")
+        .attr("width", width)
+        .attr("height", height);
+
+    const posX = d3.scaleLinear()
+        .range([0, width])
+        .domain([-100, 100]);
+
+    const posY = d3.scaleLinear()
+        .range([0, height])
+        .domain([100, -100]); // map-style, +ve is up
+
+    // set initial node positions
+    for (let i = 0; i < nodes.length; i++) {
+        let n = nodes[i];
+        if (n.position != undefined) {
+            n.fx = posX(n.position[0]);
+            n.fy = posY(n.position[1]);
+            n.fixed = true;
+        } else {
+            n.fixed = false;
+        }
+    }
+
+    // define end-arrow svg marker
+    svg.append("svg:defs").append("svg:marker")
+    .attr("id", "end-arrow")
+    .attr("viewBox", "0 -5 10 10")
+    .attr("refX", 6)
+    .attr("markerWidth", 3.5)
+    .attr("markerHeight", 3.5)
+    .attr("orient", "auto")
+    .append("svg:path")
+    .attr("d", "M0,-5L10,0L0,5")
+    .attr("fill", "#333");
+
+    const link = svg.selectAll(".link")
+                    .data(graph.links)
+                    .enter().append("svg:path")
+                    .attr("class", "link")
+                    .style("fill", "none")
+                    .style("stroke", "#333")
+                    .style("stroke-width", 2)
+                    .style("marker-end", function(d) { return "url(#end-arrow)"; });
+
+
+    function dblclick(d) {
+        d.fx = d.x;
+        d.fy = d.y;
+    }
+
+    function drag() {
+
+        function dragstarted(d) {
+        if (!d3.event.active) simulation.alphaTarget(0.3).restart();
+        d.fx = d.x;
+        d.fy = d.y;
+        }
+        
+        function dragged(d) {
+        d.fx = d3.event.x;
+        d.fy = d3.event.y;
+        }
+        
+        function dragended(d) {
+        if (!d3.event.active) simulation.alphaTarget(0);
+        d.fixed = true;
+        }
+        
+        return d3.drag()
+            .on("start", dragstarted)
+            .on("drag", dragged)
+            .on("end", dragended);
+    }
+
+    const node = svg.selectAll(".node")
+                .data(nodes)
+                .enter()
+                .append("g")  
+                .on("dblclick", dblclick)
+                .call(drag(simulation));
+
+    let node_size = 5;
+
+    node.append("circle")
+        .attr("class", "node")
+        .attr("r", node_size)
+        .attr("class", function(d) {
+            let clss = "node";
+            for (let i=0; i < d.clss.length; i++) {
+                clss += " node-"+d.clss[i];
+            };
+            return clss;
+        });
+
+    
+    node.append("text")
+        .attr("dx", 10)
+        .attr("dy", 5)
+        .style("font-weight", 100)
+        .classed("node-text", true)
+        .text(function(d){
+            return d.name
+        });
+    
+
+    function tick() {
+
+        node.attr("transform", function(d) {
+            // ensure nodes do not go beyond svg bounds
+            d.x = Math.max(node_size, Math.min(width - node_size, d.x))
+            d.y = Math.max(node_size, Math.min(height - node_size, d.y));
+            return "translate(" + d.x + "," + d.y + ")";
+        });
+
+        link.attr("d", function(d) {
+            let deltaX = d.target.x - d.source.x,
+                deltaY = d.target.y - d.source.y,
+                dist = Math.sqrt(deltaX * deltaX + deltaY * deltaY),
+                normX = deltaX / dist,
+                normY = deltaY / dist,
+                sourcePadding = node_size,
+                targetPadding = node_size + 3,
+                sourceX = d.source.x + (sourcePadding * normX),
+                sourceY = d.source.y + (sourcePadding * normY),
+                targetX = d.target.x - (targetPadding * normX),
+                targetY = d.target.y - (targetPadding * normY);
+            return "M" + sourceX + "," + sourceY + "L" + targetX + "," + targetY;
+        });
+    }
+    simulation.on("tick", tick);
+
+    
+        node.on("mouseover", function(d){
+            
+            d3.select(".table-tooltip").remove();
+
+            const table  = d3.selectAll(".schematic")
+                        .append("table")
+                        .classed("table-tooltip", true);
+
+            const thead = table.append('thead')
+            const tbody = table.append('tbody');
+            
+            const columns = ["attribute", "value"]
+            thead.append('tr')
+                .selectAll('th')
+                .data(columns).enter()
+                .append('th')
+                .text(function (column) { return column; });
+
+            const table_data = Object.assign([], d["attributes"])
+            table_data.push({"attribute": "x coordinate", "value": d.x.toFixed(2)})
+            table_data.push({"attribute": "y coordinate", "value": d.y.toFixed(2)})
+
+            const rows = tbody.selectAll('tr')
+                            .data(table_data)
+                            .enter()
+                            .append('tr');
+            
+            rows.selectAll('td')
+                .data(function (d) {
+                    return columns.map(function (column) {
+                    return {column: column, value: d[column]};
+                    });
+                })
+                .enter()
+                .append('td')
+                .text(function (d) { return d.value; });
+
+        }).on("mouseout", function(){
+            d3.select(".table-tooltip").transition().delay(2000).remove();
+        });
+    
+
+}, function(err) {
+    element.append("<p style='color:red'>d3 failed to load:" + err + "</p>");   
+});
+</script>
+</body>

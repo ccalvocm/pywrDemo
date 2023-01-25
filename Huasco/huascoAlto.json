@@ -262,9 +262,31 @@
        {"name": "entregaCanalZR3",
             "type": "link",
             "cost": -100
+        },
+        {
+            "name": "EmbLagunaGrande",
+            "type": "storage",
+            "max_volume": 7000000,
+            "initial_volume": 0,
+            "cost":-100
+        },
+        {
+            "name": "EvapLagunaGrande",
+            "type": "Output",
+            "max_flow": "LagunaGrandeEvaporation",
+            "cost": -101
+        },
+        {
+            "name": "EntradaLagunaGrande",
+            "type": "catchment",
+            "flow": 0
         }
     ],
     "edges": [
+        ["EntradaLagunaGrande", "EmbLagunaGrande"],
+        ["EmbLagunaGrande", "EvapLagunaGrande"],
+        ["EmbLagunaGrande", "entradaLagunaGrande"],
+        ["entradaLagunaGrande", "confValerianoLagunaGrande"],
         ["QLagunaGrande", "entradaLagunaGrande"],
         ["entradaLagunaGrande", "confValerianoLagunaGrande"],
         ["QValeriano", "entradaQValeriano"],
@@ -337,6 +359,29 @@
           "index_col": "Date",
           "parse_dates": true
         },
+       "evaporation_EmbLagunaGrande_mm": {
+        "type": "dataframe",
+        "url": "data/EV_mm_ERA5m.csv",
+        "index_col": "date",
+        "column": "EmbLagunaGrande",
+        "parse_dates": true
+            },
+       "LagunaGrandeEvaporation": {
+        "type": "aggregated",
+        "agg_func": "product",
+        "parameters": [
+            "EmbLagunaGrande_area",
+            "evaporation_EmbLagunaGrande_mm",
+            3.33e-5]
+            },
+        "EmbLagunaGrande_area": {
+            "type": "interpolatedvolume",
+            "node": "EmbLagunaGrande",
+            "values": [0, 686175.959571690415032],
+            "volumes": [0, 7000000],
+            "interp_kwargs": {  
+                "kind": "linear"}
+              },
        "flowDdaChollay": {
         "type": "dataframe",
         "url": "data/QSalidasCanalesm3day.csv",
