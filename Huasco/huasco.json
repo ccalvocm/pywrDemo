@@ -13,61 +13,61 @@
         {
             "name": "DdaCanalZR2_1",
             "type": "Output",
-            "cost": -1000,
+            "cost": -100,
             "max_flow": "flowCanalZR2_1"
         },   
         {
             "name": "DdaCanalZR2_2",
             "type": "Output",
-            "cost": -1000,
+            "cost": -100,
             "max_flow": "flowCanalZR2_2"
         }, 
         {
             "name": "DdaCanalZR3",
             "type": "Output",
-            "cost": -1000,
+            "cost": -100,
             "max_flow": "flowCanalZR3"
         }, 
         {
             "name": "DdaCanalZR1_2",
             "type": "Output",
-            "cost": -1000,
+            "cost": -100,
             "max_flow": "flowCanalZR1_2"
         },
         {
             "name": "DdaQuebElCarrizo",
             "type": "Output",
-            "cost": -1000,
+            "cost": -100,
             "max_flow": "flowQuebElCarrizo"
         },
         {
             "name": "DdaCanalZR1_1",
             "type": "Output",
-            "cost": -1000,
+            "cost": -100,
             "max_flow": "flowCanalZR1_1"
         },
         {
             "name": "DdaCanalZR1_2",
             "type": "Output",
-            "cost": -1000,
+            "cost": -100,
             "max_flow": "flowCanalZR1_2"
         },
         {
             "name": "DdaTransito",
             "type": "Output",
-            "cost": -1000,
+            "cost": -100,
             "max_flow": "flowDdaTransito"
         },
         {
             "name": "DdaChollay",
             "type": "Output",
-            "cost": -1000,
+            "cost": -100,
             "max_flow": "flowDdaChollay"
         },
        {
             "name": "DdaCorral",
             "type": "Output",
-            "cost": -1000,
+            "cost": -100,
             "max_flow": "flowDdaCorral"
         },               
         {
@@ -167,7 +167,7 @@
         },
        {"name": "entregaDdaCorral",
             "type": "link",
-            "cost": -1000
+            "cost": -100
         },
        {"name": "entradaQChollay",
             "type": "link",
@@ -183,7 +183,7 @@
         },
        {"name": "entregaCanalZR2_1",
             "type": "link",
-            "cost": -1000
+            "cost": -100
         },
        {"name": "entradaTransito1",
             "type": "link",
@@ -195,11 +195,11 @@
         },
        {"name": "entregaDdaTransito",
             "type": "link",
-            "cost": -1000
+            "cost": -100
         },
        {"name": "entregaCanalZR2_1",
             "type": "link",
-            "cost": -1000
+            "cost": -100
         },
        {"name": "entradaQuebChan",
             "type": "link",
@@ -211,7 +211,7 @@
         },
        {"name": "entregaCanalZR2_2",
             "type": "link",
-            "cost": -1000
+            "cost": -100
         },
        {"name": "entradaTransito4",
             "type": "link",
@@ -231,7 +231,7 @@
         },
        {"name": "entregaCanalZR1_1",
             "type": "link",
-            "cost": -1000
+            "cost": -100
         },
        {"name": "entradaQCarHu4",
             "type": "link",
@@ -247,11 +247,11 @@
         },
        {"name": "entregaQuebElCarrizo",
             "type": "link",
-            "cost": -1000
+            "cost": -100
         },
        {"name": "entregaCanalZR1_2",
             "type": "link",
-            "cost": -1000
+            "cost": -100
         },
        {"name": "conflCarmenTrans",
             "type": "link",
@@ -259,21 +259,21 @@
         },
        {"name": "entregaCanalZR3",
             "type": "link",
-            "cost": -1000
+            "cost": -100
         },
         {
             "name": "EmbSantaJuana",
             "type": "storage",
             "max_volume": 169880000,
             "initial_volume": 0,
-            "cost":-10000,
+            "cost":1001,
             "inputs":1
         },
         {
             "name": "EvapSantaJuana",
             "type": "Output",
             "max_flow": "StaJuanaEvaporation",
-            "cost": -1000000
+            "cost": -102
         },
         {
             "name": "EvapLagunaGrande",
@@ -322,7 +322,7 @@
         {
           "name": "entregaCanalZR42",
             "type": "link",
-            "cost": -1000
+            "cost": -100
         },
         {
             "name": "DdaCanalZR42",
@@ -343,7 +343,7 @@
         {
           "name": "entregaCanalZR5",
             "type": "link",
-            "cost": -1000
+            "cost": -100
         },
         {
             "name": "DdaCanalZR5",
@@ -375,7 +375,7 @@
         {
           "name": "entregaCanalZR6",
             "type": "link",
-            "cost": -1000
+            "cost": -100
         },
         {
             "name": "DdaCanalZR6",
@@ -416,7 +416,7 @@
         {
           "name": "entregaCanalZR7",
             "type": "link",
-            "cost": -1000
+            "cost": -100
         },
         {
             "name": "DdaCanalZR7",
@@ -454,7 +454,7 @@
         {
           "name": "entregaCanalZR8",
             "type": "link",
-            "cost": -1000
+            "cost": -100
         },
         {
             "name": "DdaCanalZR8",
@@ -493,20 +493,20 @@
             "name": "EmbLagunaChica",
             "type": "storage",
             "max_volume": 3500000,
-            "initial_volume": 3500000,
-            "cost":-10000
+            "initial_volume": 0,
+            "cost":10000
         },
         {
             "name": "EntradaLagunaChica",
             "type": "catchment",
-            "flow": 0
+            "flow": 1
         },
         {
             "name": "EmbLagunaGrande",
             "type": "storage",
             "max_volume": 7000000,
-            "initial_volume": 7000000,
-            "cost":-10000
+            "initial_volume": 0,
+            "cost":10000
         },
         {
             "name": "EntradaLagunaGrande",
@@ -516,12 +516,13 @@
         {
           "name": "rStaJuanaAbajo",
             "type": "link",
-            "max_flow": 132000000
+            "max_flow": 13200000,
+            "cost": -100
         },
         {
             "name": "DdaCanalZR4",
             "type": "Output",
-            "cost": -1000,
+            "cost": -100,
             "max_flow": "flowCanalZR41"
         },  
         {
@@ -532,7 +533,7 @@
         {
           "name": "entregaCanalZR41",
             "type": "link",
-            "cost": -1000
+            "cost": -100
         },   
         {
           "name": "entradaHonda",
@@ -547,12 +548,12 @@
         {
           "name": "entregaCanalZR42",
             "type": "link",
-            "cost": -1000
+            "cost": -100
         },
         {
             "name": "DdaCanalZR42",
             "type": "Output",
-            "cost": -1000,
+            "cost": -100,
             "max_flow": "flowCanalZR42"
         },
         {
@@ -568,12 +569,12 @@
         {
           "name": "entregaCanalZR5",
             "type": "link",
-            "cost": -1000
+            "cost": -100
         },
         {
             "name": "DdaCanalZR5",
             "type": "Output",
-            "cost": -1000,
+            "cost": -100,
             "max_flow": "flowCanalZR5"
         },
         {
@@ -594,18 +595,17 @@
         {
             "name": "end",
             "type": "output",
-            "max_flow":13200000,
             "cost":10000
         },
         {
           "name": "entregaCanalZR6",
             "type": "link",
-            "cost": -1000
+            "cost": -100
         },
         {
             "name": "DdaCanalZR6",
             "type": "Output",
-            "cost": -1000,
+            "cost": -100,
             "max_flow": "flowCanalZR6"
         },
         {
@@ -641,12 +641,12 @@
         {
           "name": "entregaCanalZR7",
             "type": "link",
-            "cost": -1000
+            "cost": -100
         },
         {
             "name": "DdaCanalZR7",
             "type": "Output",
-            "cost": -1000,
+            "cost": -100,
             "max_flow": "flowCanalZR7"
         },
         {"name": "EntradaQ_AS1",
@@ -679,12 +679,12 @@
         {
           "name": "entregaCanalZR8",
             "type": "link",
-            "cost": -1000
+            "cost": -100
         },
         {
             "name": "DdaCanalZR8",
             "type": "Output",
-            "cost": -1000,
+            "cost": -100,
             "max_flow": "flowCanalZR8"
         },
         {"name": "EntradaQ_S_N_6",
@@ -818,14 +818,7 @@
         "node": "EmbSantaJuana"},
         "SantaJuanaDeliver": {
         "type": "NodeRecorder",
-        "node": "end"
-        },
-        "EmbLagunaGrandeStorage": {
-        "type": "numpyarraystoragerecorder",
-        "node": "EmbLagunaChica"},
-        "LagunaGrandeDeliver": {
-        "type": "NodeRecorder",
-        "node": "rLagunaChicaAbajo"
+        "node": "rStaJuanaAbajo"
         },
           "rStaJuanaAbajo": {
           "type": "numpyarraynoderecorder",
