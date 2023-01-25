@@ -493,8 +493,8 @@
             "name": "EmbLagunaChica",
             "type": "storage",
             "max_volume": 3500000,
-            "initial_volume": 0,
-            "cost":10000
+            "initial_volume": 3500000,
+            "cost":-100
         },
         {
             "name": "EntradaLagunaChica",
@@ -505,13 +505,13 @@
             "name": "EmbLagunaGrande",
             "type": "storage",
             "max_volume": 7000000,
-            "initial_volume": 0,
-            "cost":10000
+            "initial_volume": 7000000,
+            "cost":-100
         },
         {
             "name": "EntradaLagunaGrande",
             "type": "catchment",
-            "flow": 0
+            "flow": 1
         },
         {
           "name": "rStaJuanaAbajo",
@@ -819,6 +819,13 @@
         "SantaJuanaDeliver": {
         "type": "NodeRecorder",
         "node": "rStaJuanaAbajo"
+        },
+        "LagunaGrandeStorage": {
+        "type": "numpyarraystoragerecorder",
+        "node": "EmbLagunaGrande"},
+        "SantaJuanaDeliver": {
+        "type": "NodeRecorder",
+        "node": "rLagunaGrandeAbajo"
         },
           "rStaJuanaAbajo": {
           "type": "numpyarraynoderecorder",
