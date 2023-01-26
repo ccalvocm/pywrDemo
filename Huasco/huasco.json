@@ -151,7 +151,8 @@
         },
         {"name": "rLagunaGrandeAbajo",
             "type": "link",
-            "cost": -100
+            "cost": -100,
+            "max_flow": 400000
         },
         {"name": "confValerianoLagunaGrande",
             "type": "link",
@@ -175,7 +176,7 @@
         },
        {"name": "entregaDdaChollay",
             "type": "link",
-            "cost": -1000
+            "cost": -100
         },
        {"name": "entradaTransito1",
             "type": "link",
@@ -279,7 +280,7 @@
             "name": "EvapLagunaGrande",
             "type": "Output",
             "max_flow": "LagunaGrandeEvaporation",
-            "cost": -100
+            "cost": -102
         },
         {
             "name": "EvapLagunaChica",
@@ -511,7 +512,7 @@
         {
             "name": "EntradaLagunaGrande",
             "type": "catchment",
-            "flow": 1
+            "flow": "AfluEmbLagunaGrande"
         },
         {
           "name": "rStaJuanaAbajo",
@@ -842,6 +843,14 @@
           "EvapSantaJuana": {
           "type": "numpyarraynoderecorder",
           "node": "EvapSantaJuana"
+        },
+          "EntradaLagunaGrande": {
+          "type": "numpyarraynoderecorder",
+          "node": "EntradaLagunaGrande"
+        },
+          "EvapLagunaGrande": {
+          "type": "numpyarraynoderecorder",
+          "node": "EvapLagunaGrande"
         }    
     },
     "parameters": {
@@ -945,6 +954,21 @@
             "EmbLagunaChica_area",
             "evaporation_EmbLagunaChica_mm",
             3.33e-5]
+            },
+       "LagunaGrandePp": {
+        "type": "dataframe",
+        "url": "data/Pp_m_ERA5m.csv",
+        "index_col": "date",
+        "column": "Laguna Grande",
+        "parse_dates": true
+            },
+       "AfluEmbLagunaGrande": {
+        "type": "aggregated",
+        "agg_func": "product",
+        "parameters": [
+            "EmbLagunaGrande_area",
+            "LagunaGrandePp",
+            0.033]
             },
         "flowQuebCam": {
         "type": "dataframe",
