@@ -152,8 +152,8 @@
         },
         {"name": "rLagunaGrandeAbajo",
             "type": "link",
-            "cost": -100,
-            "max_flow": 1000
+            "cost": 10,
+            "max_flow": 500
         },
         {"name": "confValerianoLagunaGrande",
             "type": "link",
@@ -165,8 +165,8 @@
         },
         {"name": "rLagunaChicaAbajo",
             "type": "link",
-            "cost": -100,
-            "max_flow":1000
+            "cost": 1000,
+            "max_flow":100000
         },
        {"name": "entradaQValeriano",
             "type": "link",
@@ -500,7 +500,8 @@
         {
             "name": "EntradaLagunaChica",
             "type": "catchment",
-            "flow": 1000
+            "flow": "AfluEmbLagunaChica",
+            "cost": -1100
         },
         {
             "name": "EmbLagunaGrande",
@@ -989,7 +990,22 @@
         "parameters": [
             "EmbLagunaGrande_area",
             "LagunaGrandePp",
-            0.033]
+            0.0333333]
+            },
+       "LagunaChicaPp": {
+        "type": "dataframe",
+        "url": "data/Pp_m_ERA5m.csv",
+        "index_col": "date",
+        "column": "Sin informacion",
+        "parse_dates": true
+            },
+       "AfluEmbLagunaChica": {
+        "type": "aggregated",
+        "agg_func": "product",
+        "parameters": [
+            "EmbLagunaChica_area",
+            "LagunaChicaPp",
+            0.0333333]
             },
         "flowQuebCam": {
         "type": "dataframe",
