@@ -295,12 +295,6 @@
             "cost": -109
         },
         {
-          "name": "rStaJuanaAbajo",
-            "type": "link",
-            "max_flow": 13200000,
-            "cost": -102
-        },
-        {
             "name": "DdaCanalZR4",
             "type": "Output",
             "cost": -100,
@@ -508,7 +502,7 @@
             "type": "storage",
             "max_volume": 7000000,
             "initial_volume": 7000000,
-            "cost":-100
+            "cost":-109
         },
         {
             "name": "EntradaLagunaGrande",
@@ -520,7 +514,7 @@
           "name": "rStaJuanaAbajo",
             "type": "link",
             "max_flow": 13200000,
-            "cost": -100
+            "cost": 100
         },
         {
             "name": "DdaCanalZR4",
