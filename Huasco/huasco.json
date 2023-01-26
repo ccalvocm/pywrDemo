@@ -55,19 +55,19 @@
         {
             "name": "DdaTransito",
             "type": "Output",
-            "cost": -100,
+            "cost": -10,
             "max_flow": "flowDdaTransito"
         },
         {
             "name": "DdaChollay",
             "type": "Output",
-            "cost": -100,
+            "cost": -10,
             "max_flow": "flowDdaChollay"
         },
        {
             "name": "DdaCorral",
             "type": "Output",
-            "cost": -100,
+            "cost": -10,
             "max_flow": "flowDdaCorral"
         },               
         {
@@ -147,19 +147,26 @@
       {
             "name": "QLagunaGrande",
             "type": "catchment",
-            "flow": "flowQLagunaGrande"
+            "flow": "flowQLagunaGrande",
+            "cost":-1000
         },
         {"name": "rLagunaGrandeAbajo",
             "type": "link",
-            "cost": -100
+            "cost": 10,
+            "max_flow": 500
         },
         {"name": "confValerianoLagunaGrande",
             "type": "link",
             "cost": -100
         },
-        {"name": "rLagunaChicaAbajo",
+        {"name": "confValerianoLagunaChica",
             "type": "link",
             "cost": -100
+        },
+        {"name": "rLagunaChicaAbajo",
+            "type": "link",
+            "cost": 1000,
+            "max_flow":100000
         },
        {"name": "entradaQValeriano",
             "type": "link",
@@ -167,7 +174,7 @@
         },
        {"name": "entregaDdaCorral",
             "type": "link",
-            "cost": -100
+            "cost": -10
         },
        {"name": "entradaQChollay",
             "type": "link",
@@ -175,7 +182,7 @@
         },
        {"name": "entregaDdaChollay",
             "type": "link",
-            "cost": -1000
+            "cost": -10
         },
        {"name": "entradaTransito1",
             "type": "link",
@@ -195,7 +202,7 @@
         },
        {"name": "entregaDdaTransito",
             "type": "link",
-            "cost": -100
+            "cost": -10
         },
        {"name": "entregaCanalZR2_1",
             "type": "link",
@@ -279,19 +286,13 @@
             "name": "EvapLagunaGrande",
             "type": "Output",
             "max_flow": "LagunaGrandeEvaporation",
-            "cost": -100
+            "cost": -110
         },
         {
             "name": "EvapLagunaChica",
             "type": "Output",
             "max_flow": "LagunaChicaEvaporation",
-            "cost": -100
-        },
-        {
-          "name": "rStaJuanaAbajo",
-            "type": "link",
-            "max_flow": 13200000,
-            "cost": -102
+            "cost": -109
         },
         {
             "name": "DdaCanalZR4",
@@ -366,12 +367,6 @@
             "type": "catchment",
             "flow":  "flowQuebMait"
         },           
-        {
-            "name": "end",
-            "type": "output",
-            "max_flow":13200000,
-            "cost":10000
-        },
         {
           "name": "entregaCanalZR6",
             "type": "link",
@@ -499,25 +494,27 @@
         {
             "name": "EntradaLagunaChica",
             "type": "catchment",
-            "flow": 1
+            "flow": "AfluEmbLagunaChica",
+            "cost": -1100
         },
         {
             "name": "EmbLagunaGrande",
             "type": "storage",
             "max_volume": 7000000,
             "initial_volume": 7000000,
-            "cost":-100
+            "cost":-109
         },
         {
             "name": "EntradaLagunaGrande",
             "type": "catchment",
-            "flow": 1
+            "flow": "AfluEmbLagunaGrande",
+            "cost": -1100
         },
         {
           "name": "rStaJuanaAbajo",
             "type": "link",
             "max_flow": 13200000,
-            "cost": -100
+            "cost": 100
         },
         {
             "name": "DdaCanalZR4",
@@ -719,15 +716,16 @@
         ["EntradaLagunaGrande", "EmbLagunaGrande"],
         ["EmbLagunaGrande", "EvapLagunaGrande"],
         ["EmbLagunaGrande", "rLagunaGrandeAbajo"],
-        ["QLagunaGrande", "rLagunaGrandeAbajo"],
+        ["QLagunaGrande", "confValerianoLagunaGrande"],
         ["rLagunaGrandeAbajo", "confValerianoLagunaGrande"],
         ["QValeriano", "entradaQValeriano"],
-        ["entradaQValeriano", "rLagunaChicaAbajo"],
+        ["entradaQValeriano", "confValerianoLagunaChica"],
         ["EntradaLagunaChica", "EmbLagunaChica"],
         ["EmbLagunaChica", "EvapLagunaChica"],
         ["EmbLagunaChica", "rLagunaChicaAbajo"],
-        ["QLagunaChica", "rLagunaChicaAbajo"],
-        ["rLagunaChicaAbajo", "confValerianoLagunaGrande"],
+        ["QLagunaChica", "confValerianoLagunaChica"],
+        ["rLagunaChicaAbajo", "confValerianoLagunaChica"],
+        ["confValerianoLagunaChica", "confValerianoLagunaGrande"],
         ["confValerianoLagunaGrande", "entregaDdaCorral"],
         ["entregaDdaCorral", "DdaCorral"],
         ["entregaDdaCorral", "entradaQChollay"],
@@ -820,6 +818,18 @@
         "type": "NodeRecorder",
         "node": "rStaJuanaAbajo"
         },
+        "rStaJuanaAbajo": {
+        "type": "numpyarraynoderecorder",
+        "node": "rStaJuanaAbajo"
+        },
+        "entregaCanalZR3": {
+        "type": "numpyarraynoderecorder",
+        "node": "entregaCanalZR3"
+        },
+        "EvapSantaJuana": {
+        "type": "numpyarraynoderecorder",
+        "node": "EvapSantaJuana"
+        },
         "LagunaGrandeStorage": {
         "type": "numpyarraystoragerecorder",
         "node": "EmbLagunaGrande"},
@@ -827,22 +837,33 @@
         "type": "NodeRecorder",
         "node": "rLagunaGrandeAbajo"
         },
-          "rStaJuanaAbajo": {
-          "type": "numpyarraynoderecorder",
-          "node": "rStaJuanaAbajo"
+        "EntradaLagunaGrande": {
+        "type": "numpyarraynoderecorder",
+        "node": "EntradaLagunaGrande"
         },
-          "entregaCanalZR3": {
-          "type": "numpyarraynoderecorder",
-          "node": "entregaCanalZR3"
+        "EvapLagunaGrande": {
+        "type": "numpyarraynoderecorder",
+        "node": "EvapLagunaGrande"
         },
-          "Desembocadura": {
-          "type": "numpyarraynoderecorder",
-          "node": "end"
+        "LagunaChicaStorage": {
+        "type": "numpyarraystoragerecorder",
+        "node": "EmbLagunaChica"},
+        "SantaJuanaDeliver": {
+        "type": "NodeRecorder",
+        "node": "rLagunaChicaAbajo"
         },
-          "EvapSantaJuana": {
-          "type": "numpyarraynoderecorder",
-          "node": "EvapSantaJuana"
-        }    
+        "EntradaLagunaChica ": {
+        "type": "numpyarraynoderecorder",
+        "node": "EntradaLagunaChica"
+        },
+        "EvapLagunaChica": {
+        "type": "numpyarraynoderecorder",
+        "node": "EvapLagunaChica"
+        },
+        "EntregaLagunaChica": {
+        "type": "numpyarraynoderecorder",
+        "node": "rLagunaChicaAbajo"
+        }      
     },
     "parameters": {
         "reservoir1_level": {
@@ -945,6 +966,36 @@
             "EmbLagunaChica_area",
             "evaporation_EmbLagunaChica_mm",
             3.33e-5]
+            },
+       "LagunaGrandePp": {
+        "type": "dataframe",
+        "url": "data/Pp_m_ERA5m.csv",
+        "index_col": "date",
+        "column": "Laguna Grande",
+        "parse_dates": true
+            },
+       "AfluEmbLagunaGrande": {
+        "type": "aggregated",
+        "agg_func": "product",
+        "parameters": [
+            "EmbLagunaGrande_area",
+            "LagunaGrandePp",
+            0.0333333]
+            },
+       "LagunaChicaPp": {
+        "type": "dataframe",
+        "url": "data/Pp_m_ERA5m.csv",
+        "index_col": "date",
+        "column": "Sin informacion",
+        "parse_dates": true
+            },
+       "AfluEmbLagunaChica": {
+        "type": "aggregated",
+        "agg_func": "product",
+        "parameters": [
+            "EmbLagunaChica_area",
+            "LagunaChicaPp",
+            0.0333333]
             },
         "flowQuebCam": {
         "type": "dataframe",
