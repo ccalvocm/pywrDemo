@@ -845,10 +845,6 @@
         "type": "numpyarraynoderecorder",
         "node": "EvapLagunaGrande"
         },
-        "EntregaLagunaGrande": {
-        "type": "numpyarraynoderecorder",
-        "node": "rLagunaGrandeAbajo"
-        },
         "LagunaChicaStorage": {
         "type": "numpyarraystoragerecorder",
         "node": "EmbLagunaChica"},
