@@ -153,7 +153,7 @@
         {"name": "rLagunaGrandeAbajo",
             "type": "link",
             "cost": -100,
-            "max_flow": 3000
+            "max_flow": 1000
         },
         {"name": "confValerianoLagunaGrande",
             "type": "link",
@@ -286,7 +286,7 @@
             "name": "EvapLagunaGrande",
             "type": "Output",
             "max_flow": "LagunaGrandeEvaporation",
-            "cost": -100
+            "cost": -110
         },
         {
             "name": "EvapLagunaChica",
