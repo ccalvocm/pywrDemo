@@ -4,5 +4,5 @@ Pruebas de asignación de agua en pywr. Cuencas modeladas:
 ## Estero Codegua
 ## Río Huasco
 
-![alt text](https://uc9c3bb8b70aee111eb832cea339.previews.dropboxusercontent.com/p/thumb/ABxWJtPmo_yuK6j5x4CIcTUi6rERC8kDKKV6fASixl_F4y1UOD8hWRo_Hl84QdVrIWHSwQ0542hEUcOLONTyf9WGe9nYwrOl_3efWWhAHWJRLKXYKnJcFT0rk_AFlrh1VPz2IixtKAPJvjFcCFdCuw4JmDcS6DCLHqwmVykAt393zKzzvTaSuXVBCnp6YwkvdFYLTv8df9lyPvaySSic0igyuRvQEM5LLZkALd5V0BJIPeg3Y5W-3k0IIe9wkhiKqZ60JI2kPraYI1Jptcfdi25tsyP-G5WJfzbFSmg7kzzVxiNPKqh1eyC7In7gzG1sipy43zxuZyP_ssF8zEnLUDLYnWOSwrZoXshqBlFlDq2hTa_jc_eN0i-1LzbmdBiyUWXuR-yYfyvDMS5dv294E4zns5ozMJ5FJULFcUSMa_9EWw/p.png)
+![alt text](https://github.com/ccalvocm/pywrDemo/blob/pruebas/imgs/Huasco.png)
 ```
