@@ -1,0 +1,13 @@
+# Name File for MODFLOW created on 2/3/2023 by ModelMuse Version 5.1.1.0
+LIST             11 ..\..\output\output.mfnwt\mfnwt.lst REPLACE
+DATA(BINARY)      9 ..\..\output\output.mfnwt\mfnwt.cbc REPLACE
+DIS              12 ..\..\model\model.mfnwt\mfnwt.dis OLD
+BAS6             13 ..\..\model\model.mfnwt\mfnwt.bas OLD
+OC               39 ..\..\model\model.mfnwt\mfnwt.oc OLD
+DATA             37 ..\..\output\output.mfnwt\mfnwt.fhd REPLACE
+DATA             38 ..\..\output\output.mfnwt\mfnwt.fdn REPLACE
+NWT             133 ..\..\model\model.mfnwt\mfnwt.nwt OLD
+UPW             134 ..\..\model\model.mfnwt\mfnwt.upw OLD
+CHD              17 ..\..\model\model.mfnwt\mfnwt.chd OLD
+RIV              21 ..\..\model\model.mfnwt\mfnwt.riv OLD
+RCH              24 ..\..\model\model.mfnwt\mfnwt.rch OLD
