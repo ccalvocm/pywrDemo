@@ -152,8 +152,8 @@
         },
         {"name": "rLagunaGrandeAbajo",
             "type": "link",
-            "cost": 10,
-            "max_flow": 500
+            "cost": 500,
+            "max_flow": 2200
         },
         {"name": "confValerianoLagunaGrande",
             "type": "link",
@@ -500,15 +500,15 @@
         {
             "name": "EmbLagunaGrande",
             "type": "storage",
-            "max_volume": 7000000,
-            "initial_volume": 7000000,
-            "cost":-109
+            "max_volume": 800000,
+            "initial_volume": 800000,
+            "cost":-110
         },
         {
             "name": "EntradaLagunaGrande",
             "type": "catchment",
             "flow": "AfluEmbLagunaGrande",
-            "cost": -1100
+            "cost": -11000
         },
         {
           "name": "rStaJuanaAbajo",
@@ -863,7 +863,11 @@
         "EntregaLagunaChica": {
         "type": "numpyarraynoderecorder",
         "node": "rLagunaChicaAbajo"
-        }      
+        },
+        "EntregaLagunaGrande": {
+        "type": "numpyarraynoderecorder",
+        "node": "rLagunaGrandeAbajo"
+        }        
     },
     "parameters": {
         "reservoir1_level": {
@@ -877,7 +881,7 @@
         "reservoir2_level": {
           "type": "interpolatedvolume",
           "node": "EmbLagunaGrande",
-          "volumes": [0,7000000],
+          "volumes": [0,8000000],
           "values": [3232,3247],
           "interp_kwargs": {  
           "kind": "linear"}
@@ -910,7 +914,7 @@
             "type": "interpolatedvolume",
             "node": "EmbLagunaGrande",
             "values": [0, 686176],
-            "volumes": [0, 7000000],
+            "volumes": [0, 8000000],
             "interp_kwargs": {  
                 "kind": "linear"}
               },
@@ -980,7 +984,7 @@
         "parameters": [
             "EmbLagunaGrande_area",
             "LagunaGrandePp",
-            0.0333333]
+            0.1]
             },
        "LagunaChicaPp": {
         "type": "dataframe",
