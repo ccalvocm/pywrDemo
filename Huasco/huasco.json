@@ -152,8 +152,8 @@
         },
         {"name": "rLagunaGrandeAbajo",
             "type": "link",
-            "cost": 500,
-            "max_flow": 100000
+            "cost": 1000,
+            "max_flow": 200000
         },
         {"name": "confValerianoLagunaGrande",
             "type": "link",
@@ -166,7 +166,7 @@
         {"name": "rLagunaChicaAbajo",
             "type": "link",
             "cost": 1000,
-            "max_flow":100000
+            "max_flow": 100000
         },
        {"name": "entradaQValeriano",
             "type": "link",
@@ -500,8 +500,8 @@
         {
             "name": "EmbLagunaGrande",
             "type": "storage",
-            "max_volume": 7500000,
-            "initial_volume": 7400000,
+            "max_volume": 7000000,
+            "initial_volume": 7000000,
             "cost":-109
         },
         {
@@ -881,7 +881,7 @@
         "reservoir2_level": {
           "type": "interpolatedvolume",
           "node": "EmbLagunaGrande",
-          "volumes": [0,7500000],
+          "volumes": [0,7000000],
           "values": [3232,3247],
           "interp_kwargs": {  
           "kind": "linear"}
@@ -914,7 +914,7 @@
             "type": "interpolatedvolume",
             "node": "EmbLagunaGrande",
             "values": [0, 686176],
-            "volumes": [0, 7500000],
+            "volumes": [0, 7000000],
             "interp_kwargs": {  
                 "kind": "linear"}
               },
