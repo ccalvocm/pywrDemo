@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document id="root_doc">
+    <Schema id="test" name="test">
+      <SimpleField name="COD_CUENCA" type="string"/>
+      <SimpleField name="NOM_CUENCA" type="string"/>
+      <SimpleField name="COD_SCUEN" type="string"/>
+      <SimpleField name="NOM_SCUEN" type="string"/>
+      <SimpleField name="COD_SSCUEN" type="string"/>
+      <SimpleField name="NOM_SSCUEN" type="string"/>
+      <SimpleField name="COD_NIV_4" type="string"/>
+      <SimpleField name="NOM_NIV_4" type="string"/>
+      <SimpleField name="COD_NIV_5" type="string"/>
+      <SimpleField name="NOM_NIV_5" type="string"/>
+      <SimpleField name="COD_NIV_6" type="string"/>
+      <SimpleField name="NOM_NIV_6" type="string"/>
+      <SimpleField name="COD_NIV_7" type="string"/>
+      <SimpleField name="NOM_NIV_7" type="string"/>
+      <SimpleField name="COD_NIV_8" type="string"/>
+      <SimpleField name="NOM_NIV_8" type="string"/>
+      <SimpleField name="COD_NIV_9" type="string"/>
+      <SimpleField name="NOM_NIV_9" type="string"/>
+      <SimpleField name="TIPO" type="string"/>
+      <SimpleField name="VERTIENTE" type="string"/>
+      <SimpleField name="ORIGEN" type="string"/>
+      <SimpleField name="T_MED" type="string"/>
+      <SimpleField name="T_MAX" type="string"/>
+      <SimpleField name="T_MIN" type="string"/>
+      <SimpleField name="PP" type="string"/>
+      <SimpleField name="PENDIENTE" type="string"/>
+      <SimpleField name="N_ESTAC_F" type="float"/>
+      <SimpleField name="N_ESTAC_P" type="float"/>
+      <SimpleField name="COD_MAP" type="string"/>
+      <SimpleField name="SUPERFICIE" type="float"/>
+      <SimpleField name="COD_DGA" type="string"/>
+      <SimpleField name="NOM_DGA" type="string"/>
+      <SimpleField name="Area_Km2" type="float"/>
+      <SimpleField name="Shape_Leng" type="float"/>
+      <SimpleField name="Shape_Area" type="float"/>
+    </Schema>
+    <Schema id="test.schema">
+      <SimpleField name="COD_CUENCA" type="string"/>
+      <SimpleField name="NOM_CUENCA" type="string"/>
+      <SimpleField name="COD_SCUEN" type="string"/>
+      <SimpleField name="NOM_SCUEN" type="string"/>
+      <SimpleField name="COD_SSCUEN" type="string"/>
+      <SimpleField name="NOM_SSCUEN" type="string"/>
+      <SimpleField name="COD_NIV_4" type="string"/>
+      <SimpleField name="NOM_NIV_4" type="string"/>
+      <SimpleField name="COD_NIV_5" type="string"/>
+      <SimpleField name="NOM_NIV_5" type="string"/>
+      <SimpleField name="COD_NIV_6" type="string"/>
+      <SimpleField name="NOM_NIV_6" type="string"/>
+      <SimpleField name="COD_NIV_7" type="string"/>
+      <SimpleField name="NOM_NIV_7" type="string"/>
+      <SimpleField name="COD_NIV_8" type="string"/>
+      <SimpleField name="NOM_NIV_8" type="string"/>
+      <SimpleField name="COD_NIV_9" type="string"/>
+      <SimpleField name="NOM_NIV_9" type="string"/>
+      <SimpleField name="TIPO" type="string"/>
+      <SimpleField name="VERTIENTE" type="string"/>
+      <SimpleField name="ORIGEN" type="string"/>
+      <SimpleField name="T_MED" type="string"/>
+      <SimpleField name="T_MAX" type="string"/>
+      <SimpleField name="T_MIN" type="string"/>
+      <SimpleField name="PP" type="string"/>
+      <SimpleField name="PENDIENTE" type="string"/>
+      <SimpleField name="N_ESTAC_F" type="float"/>
+      <SimpleField name="N_ESTAC_P" type="float"/>
+      <SimpleField name="COD_MAP" type="string"/>
+      <SimpleField name="SUPERFICIE" type="float"/>
+      <SimpleField name="COD_DGA" type="string"/>
+      <SimpleField name="NOM_DGA" type="string"/>
+      <SimpleField name="Area_Km2" type="float"/>
+      <SimpleField name="Shape_Leng" type="float"/>
+      <SimpleField name="Shape_Area" type="float"/>
+    </Schema>
+    <Document id="test">
+      <name>test</name>
+    </Document>
+  </Document>
+</kml>

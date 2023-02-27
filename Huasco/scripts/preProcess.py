@@ -16,8 +16,9 @@ class model(object):
         self.path=pathNam
         self.name=name
         self.model=None
-        # self.deltaX=317600.0
-        # self.deltaY=6883200.0
+        self.deltaX=280000.0
+        self.deltaY=6820000.0
+        self.startDate='1994-04-01'
     def load(self):
         self.model=flopy.modflow.Modflow.load(self.path,version="mfnwt",
  exe_name="MODFLOW-NWT.exe")
@@ -52,10 +53,20 @@ def makeOC(mf):
                              save_every=True, compact=True,unit_number=39)
     return None
 
-def makeDIS(mf):
+def getDeltas():
+    pathLinkage=os.path.join('..','geodata','linkageHuasco.shp')
+    pathDIS=os.path.join('..','geodata','DISHuasco.shp')
+    
+    gdfLink=gpd.read_file(pathLinkage)
+    gdfDIS=gpd.read_file(pathDIS).dissolve()
+    
+    deltaX=gdfLink.bounds['minx']-gdfDIS.bounds['minx']
+    deltaY=gdfLink.bounds['miny']-gdfDIS.bounds['miny']
+
+def makeDIS(modelo):
     """
     
-
+    '1994-04-01','2019-03-01'
     Parameters
     ----------
     mf : modflow model
@@ -67,6 +78,7 @@ def makeDIS(mf):
 
     """
 
+    mf=modelo.model
     dis=mf.dis
     nlay=dis.nlay
     nrow=dis.nrow
@@ -75,34 +87,52 @@ def makeDIS(mf):
     delc=dis.delc
     top=dis.top
     botm=dis.botm
-    perlen=list(dis.perlen.array)+list(pd.date_range('2018-01-01','2022-03-01',
+    perlen=list(dis.perlen.array)+list(pd.date_range('2019-04-01','2022-03-01',
                                                      freq='MS').days_in_month)
     nper=len(perlen)
     nstp=list(np.ones(len(perlen)).astype(int))
     steady=[False if ind>0 else True for ind,x in enumerate(nstp)]
-    mf.start_datetime='1-1-1993'
-    tsmult=[1.2 for x in perlen]
+    mf.start_datetime=modelo.model.startDate
     dis3 = flopy.modflow.ModflowDis(
     mf, nlay, nrow, ncol, delr=delr, delc=delc, top=top, botm=botm,
-    nper=nper,perlen=perlen,nstp=nstp,steady=steady,unitnumber=29)
+    nper=nper,perlen=perlen,nstp=nstp,steady=steady,unitnumber=12)
     return None
     
 def NWT(mf):
     return flopy.modflow.ModflowNwt(mf,headtol=0.001,fluxtol=600,
 maxiterout=600,thickfact=1e-05,linmeth=2,iprnwt=1,ibotav=1,options='COMPLEX')
     
+def BAS(mf):
+    bas=gpd.read_file(os.path.join('..','geodata','bas6Huasco.shp'))
+    bas[bas['ibound_1']==1].to_file(os.path.join('..','geodata',
+                                              'bas6HuascoActive.shp'))
+    
 def parseDates(df):
     colDate=df.columns[df.columns.str.contains('Fecha')][0]
     df[colDate]=df[colDate].apply(lambda x: pd.to_datetime(x))
     return df,colDate
 
-def getDate():
-    return pd.date_range('1993-01-01','2022-04-01',freq='MS')
+def getDate(modelo):
+    return pd.date_range(modelo.startDate,'2022-04-01',freq='MS')
     
 def wellsMFP(modelo):
     pathWells=os.path.join('.','geodata','CaudalTotal_CAS123.shp')
     wellsMFP=gpd.read_file(pathWells)
     wellsMFP.drop_duplicates(inplace=True)
+
+def years(strYear):
+    yrRet='19'+strYear
+    if int(yrRet)<1910:
+        return str(int(yrRet)+100)
+    else:
+        return yrRet
+
+def fixDate(gdf):
+    gdf.loc[gdf[gdf['Fecha De R']=='-'].index,'Fecha De R']='01/01/1980'
+    idx=gdf[gdf['Fecha De R'].str.contains('abr')].index
+    gdf.loc[idx,'Fecha De R']=gdf.loc[idx,'Fecha De R'].apply(lambda x: '01/04/'+years(x.split('-')[-1]))
+    gdf['Fecha De R']=gdf['Fecha De R'].str.replace('-','/')
+    return gdf
 
 def makeWEL(modelo):
     import geopandas as gpd
@@ -112,24 +142,21 @@ def makeWEL(modelo):
     daa=gpd.read_file(pathDAA)
     daaSubt=gpd.GeoDataFrame(daa[daa['Naturaleza']=='Subterranea'])
     daaSubCons=daaSubt[daaSubt['Tipo Derec']!='No Consuntivo']
-    daaSubConsCont=daaSubCons[(daaSubCons['Ejercicio'].str.contains('Cont')) | (daaSubCons['Ejercicio'].isna())]
-    
-    # daa que no caducaron
-    daaSubConsCont.loc[daaSubConsCont[daaSubConsCont['Fecha Fin'].notnull()]['Fecha Fin'].index,
-                       'Fecha Fin']='2022-01-01'
-    daaSubConsCont.loc[daaSubConsCont[daaSubConsCont['Fecha Fin'].isnull()]['Fecha Fin'].index,
-                       'Fecha Fin']='2023-04-01'
-    
+    daaSubConsCont=daaSubCons[((daaSubCons['Ejercicio'].str.contains('Continuo',
+na=False)) | (daaSubCons['Ejercicio'].isnull()))]
+       
     # trasladar el modelo
     daaSubConsCont.geometry=daaSubConsCont.geometry.apply(lambda x: shapely.affinity.translate(x, 
                                     xoff=-modelo.deltaX, yoff=-modelo.deltaY))
     # celdas activas
-    modelLimit=gpd.read_file(os.path.join('.','geodata','bas6.shp'))
+    modelLimit=gpd.read_file(os.path.join('..','geodata','bas6Huasco.shp'))
     limit=modelLimit[modelLimit['ibound_1']>0]
     
     # overlay con las celdas activas
     daaSubOverlay=gpd.overlay(daaSubConsCont,limit)
-    # daaSubOverlay.drop_duplicates('Nombre Sol',inplace=True)
+    
+    # arreglar las fechas de resolucion
+    daaSubOverlay=fixDate(daaSubOverlay)
     
     # convertir a unidades de l/s a m/d
     daaSubOverlay['Caudal Anu']=daaSubOverlay['Caudal Anu'].str.replace(',',
@@ -142,8 +169,6 @@ def makeWEL(modelo):
     
     daaSubOverlay['COLROW']=daaSubOverlay.geometry.apply(lambda u: str(int(u.x/200))+','+str(530-int(u.y/200)))
     daaSubOverlay,colDate=parseDates(daaSubOverlay)
-    # sumar los pozos por celda pero por año de sp
-    # daaSubSum=daaSubOverlay.groupby(['COLROW']).agg('sum')['Caudal Anu']
     
     # crear matriz de coordenadas
     welAll=modelo.model.wel.stress_period_data.array['flux']
@@ -152,7 +177,7 @@ def makeWEL(modelo):
     # crear diccionario del paquete WEL
     wel_spd=dict.fromkeys(range(modelo.model.dis.nper))
     
-    useFactor=0.6203315705096603
+    useFactor=1
     # El factor de uso se obtiene al comparar los bombeos de diciembre de 2017
     # y enero de 2018. Viene del hecho que los pozos no bombean el 100% del derecho
 
@@ -167,10 +192,6 @@ def makeWEL(modelo):
             daaSubSum=daaSubOverlay.copy()
             # filtrar los daa otorgados a la fecha
             daaSubSum=daaSubSum[daaSubSum[colDate].apply(lambda x: x)<=date]
-            
-            # filtrar los daa caducos
-            daaSubSum=daaSubSum[daaSubSum['Fecha Fin'].apply(lambda x: pd.to_datetime(x))>date]
-
             
             daaSubSum=daaSubSum.groupby(['COLROW']).agg('sum')['Caudal Anu']*useFactor
             
@@ -425,7 +446,7 @@ def main():
     modelo=model(pathNam,'Copiapo')
     modelo.load()
     
-    # makeDIS(modelo.model)
+    # makeDIS(modelo)
     # NWT(modelo.model)
     # makeOC(modelo.model)
     # makeWEL(modelo)
