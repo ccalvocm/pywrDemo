@@ -12,13 +12,13 @@ import numpy as np
 import geopandas as gpd
 
 class model(object):
-    def __init__(self,pathNam,name):
+    def __init__(self,pathNam,name,startDate):
         self.path=pathNam
         self.name=name
         self.model=None
         self.deltaX=280000.0
         self.deltaY=6820000.0
-        self.startDate='1994-04-01'
+        self.startDate=startDate
     def load(self):
         self.model=flopy.modflow.Modflow.load(self.path,version="mfnwt",
  exe_name="MODFLOW-NWT.exe")
@@ -90,12 +90,14 @@ def makeDIS(modelo):
     perlen=list(dis.perlen.array)+list(pd.date_range('2019-04-01','2022-03-01',
                                                      freq='MS').days_in_month)
     nper=len(perlen)
-    nstp=list(np.ones(len(perlen)).astype(int))
-    steady=[False if ind>0 else True for ind,x in enumerate(nstp)]
-    mf.start_datetime=modelo.model.startDate
+    nstp=list(24*np.ones(len(perlen)).astype(int))
+    # steady=[False if ind>0 else True for ind,x in enumerate(nstp)]
+    steady=[False for ind,x in enumerate(nstp)]
+    mf.start_datetime=modelo.startDate
     dis3 = flopy.modflow.ModflowDis(
     mf, nlay, nrow, ncol, delr=delr, delc=delc, top=top, botm=botm,
-    nper=nper,perlen=perlen,nstp=nstp,steady=steady,unitnumber=12)
+    nper=nper,perlen=perlen,nstp=nstp,steady=steady,unitnumber=12,
+    tsmult=1.2)
     return None
     
 def NWT(mf):
@@ -113,7 +115,21 @@ def parseDates(df):
     return df,colDate
 
 def getDate(modelo):
-    return pd.date_range(modelo.startDate,'2022-04-01',freq='MS')
+    """
+    
+    El primer stress period es permanente
+    Parameters
+    ----------
+    modelo : TYPE
+        DESCRIPTION.
+
+    Returns
+    -------
+    TYPE
+        DESCRIPTION.
+
+    """
+    return pd.date_range(modelo.startDate,'2022-03-01',freq='MS')
     
 def wellsMFP(modelo):
     pathWells=os.path.join('.','geodata','CaudalTotal_CAS123.shp')
@@ -134,6 +150,12 @@ def fixDate(gdf):
     gdf['Fecha De R']=gdf['Fecha De R'].str.replace('-','/')
     return gdf
 
+def loadDis():
+    pathDis=r'G:\pywrDemo\Huasco\geodata\DISHuasco.shp'
+    gdf=gpd.read_file(pathDis)
+    gdf.set_crs(epsg='32719',inplace=True)
+    return gdf
+    
 def makeWEL(modelo):
     import geopandas as gpd
     import shapely
@@ -167,11 +189,11 @@ na=False)) | (daaSubCons['Ejercicio'].isnull()))]
                                                       'Caudal Anu'].values/60
     daaSubOverlay['Caudal Anu']=-86400*1e-3*daaSubOverlay['Caudal Anu']
     
-    daaSubOverlay['COLROW']=daaSubOverlay.geometry.apply(lambda u: str(int(u.x/200))+','+str(530-int(u.y/200)))
+    gdfDIS=loadDis()
+    daaSubOverlay=gpd.sjoin(daaSubOverlay,gdfDIS)
+    daaSubOverlay['COLROW']=daaSubOverlay['column_right'].astype(str)+','+daaSubOverlay['row_right'].astype(str)
+    # daaSubOverlay['COLROW']=daaSubOverlay.geometry.apply(lambda u: str(int(u.x/200))+','+str(138-int(u.y/200)))
     daaSubOverlay,colDate=parseDates(daaSubOverlay)
-    
-    # crear matriz de coordenadas
-    welAll=modelo.model.wel.stress_period_data.array['flux']
     
     # actualizar el paquete WEL
     # crear diccionario del paquete WEL
@@ -183,32 +205,26 @@ na=False)) | (daaSubCons['Ejercicio'].isnull()))]
 
     
     # lista años
-    listDates=getDate()
+    listDates=getDate(modelo)
     for stp in wel_spd.keys():
         date=listDates[stp]
         listSpd=[]
-        if stp>300:
-            # sumar los DAA antes del año del stp
-            daaSubSum=daaSubOverlay.copy()
-            # filtrar los daa otorgados a la fecha
-            daaSubSum=daaSubSum[daaSubSum[colDate].apply(lambda x: x)<=date]
-            
-            daaSubSum=daaSubSum.groupby(['COLROW']).agg('sum')['Caudal Anu']*useFactor
-            
-            for col in range(np.shape(welAll[0][0])[1]-1):
-                for row in range(np.shape(welAll[0][0])[0]-1):
-                    try:
-                        flux=daaSubSum.loc[str(col)+','+str(row)]
-                        listSpd.append([0,row,col,flux]) 
-                    except:
-                        continue
-        else:
-            arrayWel=welAll[stp][0]
-            for col in range(np.shape(arrayWel)[1]-1):
-                for row in range(np.shape(arrayWel)[0]-1):
-                    listSpd.append([0,row,col,arrayWel[row,col]])  
-        wel_spd[stp]=[x for x in listSpd if x[-1]<=0]
+        # sumar los DAA antes del año del stp
+        daaSubSum=daaSubOverlay.copy()
+        # filtrar los daa otorgados a la fecha
+        daaSubSum=daaSubSum[daaSubSum[colDate].apply(lambda x: x)<=date]
         
+        daaSubSum=daaSubSum.groupby(['COLROW']).agg('sum')['Caudal Anu']*useFactor
+        
+        for col in range(modelo.model.dis.ncol-1):
+            for row in range(modelo.model.dis.nrow-1):
+                try:
+                    flux=daaSubSum.loc[str(col)+','+str(row)]
+                    listSpd.append([0,row,col,flux]) 
+                except:
+                    continue
+        wel_spd[stp]=[x for x in listSpd if x[-1]<=0]
+    wel_spd[0]=[list(x[:-1])+[x[-1]*0.1] for x in wel_spd[0]]
     wel = flopy.modflow.ModflowWel(modelo.model,stress_period_data=wel_spd)
 
 def processBudget():
@@ -408,31 +424,29 @@ def SWmodel(ModeloEmbalseLautaro_df_M,LaPuerta_GWSW_df_M):
     # RCH_lau_df_3M = RCH_lau_df_1M.resample('Q').mean().reset_index().drop(columns='date').head(100)
     return SWMODEL_out_df['Q_InfiltracionLautaro']
 
-def makeRCH(model_,rchLautaro):
+# def makeRCH(model_):
 
-    # crear matriz de coordenadas
-    rchAll=model_.rch.rech.array[0][0]
-    # identificar las celdas con recarga desde el embalse
-    mask=rchAll>0.054
+#     # crear matriz de coordenadas
+#     rchAll=model_.rch.rech.array[0][0]
+#     # identificar las celdas con recarga desde el embalse
+#     mask=rchAll>0.054
 
-    # actualizar el paquete RCH
-    # actualizar la tasa de recarga por celda
-    # match con los srtress periods
-    rchByCell=rchLautaro.loc[(rchLautaro.index>='1993-01-01') & (rchLautaro.index<='2022-03-31')]
-    rchByCell=rchByCell.values*1e-03*86400./200./200./len(rchAll[mask])
-
-    # crear diccionario del paquete RCH
-    rch_spd=dict.fromkeys(range(model_.dis.nper))
+#     # actualizar el paquete RCH
+#     # actualizar la tasa de recarga por celda
+#     # match con los srtress periods
+ 
+#     # crear diccionario del paquete RCH
+#     rch_spd=dict.fromkeys(range(model_.dis.nper))
     
-    for stp in range(list(rch_spd.keys())[-1]+1):  
-        rechStp=model_.rch.rech.array[stp][0]
-        if stp>1:
-            rechStp[mask]=rchByCell[stp-1]
-        rch_spd[stp]=rechStp.astype(np.float16)[:]
-        del rechStp
+#     for stp in range(list(rch_spd.keys())[-1]+1):  
+#         rechStp=model_.rch.rech.array[stp][0]
+#         if stp>1:
+#             rechStp[mask]=rchByCell[stp-1]
+#         rch_spd[stp]=rechStp.astype(np.float16)[:]
+#         del rechStp
         
-    rch=flopy.modflow.ModflowRch(model_,nrchop=3,rech=rch_spd)
-    return rch
+#     rch=flopy.modflow.ModflowRch(model_,nrchop=3,rech=rch_spd)
+#     return rch
 
 def main():
 
@@ -443,18 +457,18 @@ def main():
 
     pathNam=os.path.join('..','modflow','mfnwt.nam')
     os.chdir(os.path.dirname(pathNam))
-    modelo=model(pathNam,'Copiapo')
+    modelo=model(pathNam,'Copiapo','1994-04-01')
     modelo.load()
     
-    # makeDIS(modelo)
-    # NWT(modelo.model)
-    # makeOC(modelo.model)
-    # makeWEL(modelo)
+    makeDIS(modelo)
+    NWT(modelo.model)
+    makeOC(modelo.model)
+    makeWEL(modelo)
     
     # incoporar la recarga del modelo superficial
     
-    # correro modelo de aguas subterráneas
-    modelo.run()
+    # correr modelo de aguas subterráneas
+    modelo.run_model(silent=False)
     
     processHeads(modelo.model)
     processBudget()
