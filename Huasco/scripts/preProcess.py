@@ -48,7 +48,7 @@ def makeOC(mf):
 
     """
     sps=mf.dis.nper
-    spd={(i,0) : ['save drawdown'] for i in range(0,sps)}
+    spd={(i,0) : ['SAVE HEAD'] for i in range(0,sps)}
     oc = flopy.modflow.ModflowOc(mf, stress_period_data=spd,
                              save_every=True, compact=True,unit_number=39)
     return None
@@ -224,8 +224,8 @@ na=False)) | (daaSubCons['Ejercicio'].isnull()))]
                 except:
                     continue
         wel_spd[stp]=[x for x in listSpd if x[-1]<=0]
-    wel_spd[0]=[list(x[:-1])+[x[-1]*0.1] for x in wel_spd[0]]
-    wel = flopy.modflow.ModflowWel(modelo.model,stress_period_data=wel_spd)
+    wel = flopy.modflow.ModflowWel(modelo.model,stress_period_data=wel_spd,
+                                   unitnumber=20)
 
 def processBudget():
     import matplotlib.pyplot as plt
@@ -284,7 +284,7 @@ def processBudget():
     plt.savefig(os.path.join('.','out','balancePromedioCopiapo.svg'),
                 bbox_inches='tight')    
     
-def processHeads(mf):
+def processHeads(modelo):
 
     # import the HeadFile reader and read in the head file
     from flopy.utils import HeadFile
@@ -292,12 +292,14 @@ def processHeads(mf):
     import matplotlib.pyplot as plt
     import flopy.utils.binaryfile as bf
     
-    head_file = os.path.join('.', "gv6nwt.hds")
+    mf=modelo.model
+    name=modelo.path.split('\\')[-1].replace('.nam','.hds')
+    head_file = os.path.join('.', name)
     hds = HeadFile(head_file)
         
     hdobj = bf.HeadFile(head_file, precision='single')
     hdobj.list_records()
-    rec = hdobj.get_data(kstpkper=(0, 351))
+    rec = hdobj.get_data(kstpkper=(0, 0))
     rec[0][rec[0]==999]=np.nan
     plt.figure()
     plt.imshow(rec[0],vmin=0,interpolation='nearest')
@@ -305,10 +307,11 @@ def processHeads(mf):
     # create the vtk object and export heads
     vtkobj = vtk.Vtk(mf)
     otfolder=os.path.join('.','out')
-    vtk.export_heads(mf, hdsfile=head_file, otfolder=otfolder,kstpkper=(0,351),
+    vtk.export_heads(mf, hdsfile=head_file, 
+                     otfolder=otfolder,kstpkper=(0,0),
                      point_scalars=True)  
     vtkobj.add_heads(hds)
-    vtkobj.write(os.path.join('.','out', "gv6nwt_head.vtu"))
+    vtkobj.write(os.path.join('.','out', name.replace('.nam','.vtu')))
 
 def damModel():
     # correr modelo de embalse
@@ -467,10 +470,13 @@ def main():
     
     # incoporar la recarga del modelo superficial
     
-    # correr modelo de aguas subterráneas
-    modelo.run_model(silent=False)
+    # escribir los paquetes
+    modelo.model.write_input('WEL')
     
-    processHeads(modelo.model)
+    # correr modelo de aguas subterráneas
+    modelo.model.run_model(silent=False)
+    
+    processHeads(modelo)
     processBudget()
 
 # if __name__=='__main__':
