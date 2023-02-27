@@ -471,7 +471,8 @@ def main():
     # incoporar la recarga del modelo superficial
     
     # escribir los paquetes
-    modelo.model.write_input('WEL')
+    modelo.model.write_input(['WEL','OC','DIS','NWT','RIV','BAS6',
+                              'UPW','CHD','RCH'])
     
     # correr modelo de aguas subterráneas
     modelo.model.run_model(silent=False)
