@@ -319,6 +319,11 @@
           "name": "EntradaQuebHonda",
             "type": "catchment",
             "flow":  "flowQuebHonda"
+        },     
+        {
+          "name": "AfloraQuebHonda",
+            "type": "catchment",
+            "flow":  "afloraQuebHonda"
         },
         {
           "name": "entregaCanalZR42",
@@ -340,6 +345,51 @@
           "name": "Q_S_N_1",
             "type": "catchment",
             "flow":  "flowQ_S_N_1"
+        },
+        {
+          "name": "afloQ_S_N_1",
+            "type": "catchment",
+            "flow":  "flowAfloHuasco"
+        },
+        {
+          "name": "afloQ_S_N_2",
+            "type": "catchment",
+            "flow":  "flowAfloHuasco"
+        },
+        {
+          "name": "afloQ_S_N_3",
+            "type": "catchment",
+            "flow":  "flowAfloHuasco"
+        },
+        {
+          "name": "afloQ_S_N_7",
+            "type": "catchment",
+            "flow":  "flowAfloHuasco"
+        },
+        {
+          "name": "afloQ_S_N_5",
+            "type": "catchment",
+            "flow":  "flowAfloHuasco"
+        },
+        {
+          "name": "afloQ_AS1",
+            "type": "catchment",
+            "flow":  "flowAfloHuasco"
+        },
+        {
+          "name": "afloQ_AS2",
+            "type": "catchment",
+            "flow":  "flowAfloHuasco"
+        },
+        {
+          "name": "Q_DelP",
+            "type": "catchment",
+            "flow":  "flowAfloHuasco"
+        },
+        {
+          "name": "Q_DelP",
+            "type": "catchment",
+            "flow":  "flowAfloHuasco"
         },
         {
           "name": "entregaCanalZR5",
@@ -776,10 +826,12 @@
         ["entregaCanalZR41", "DdaCanalZR4"],
         ["entregaCanalZR41", "entradaHonda"],
         ["EntradaQuebHonda", "entradaHonda"],
+        ["AfloraQuebHonda", "entradaHonda"],
         ["entradaHonda", "entregaCanalZR42"],
         ["entregaCanalZR42", "DdaCanalZR42"],
         ["entregaCanalZR42", "EntradaQ_S_N_1"],
         ["Q_S_N_1", "EntradaQ_S_N_1"],
+        ["afloQ_S_N_1", "EntradaQ_S_N_1"],
         ["EntradaQ_S_N_1", "entregaCanalZR5"],
         ["entregaCanalZR5", "DdaCanalZR5"],
         ["entregaCanalZR5", "EntradaQ_AguaV"],
@@ -789,18 +841,24 @@
         ["entregaCanalZR6", "DdaCanalZR6"],
         ["entregaCanalZR6", "EntradaQ_S_N_2"],
         ["Q_S_N_2", "EntradaQ_S_N_2"],
+        ["afloQ_S_N_2", "EntradaQ_S_N_2"],
         ["Q_S_N_7", "EntradaQ_S_N_7"],
+        ["afloQ_S_N_7", "EntradaQ_S_N_7"],
         ["EntradaQ_S_N_2", "EntradaQ_S_N_7"],
         ["EntradaQ_S_N_7", "EntradaQ_S_N_3"],
         ["Q_S_N_3", "EntradaQ_S_N_3"],
+        ["afloQ_S_N_3", "EntradaQ_S_N_3"],
         ["EntradaQ_S_N_3", "entregaCanalZR7"],
         ["entregaCanalZR7", "DdaCanalZR7"],
         ["entregaCanalZR7", "EntradaQ_AS1"],
         ["Q_AS1", "EntradaQ_AS1"],
+        ["afloQ_AS1", "EntradaQ_AS1"],
         ["EntradaQ_AS1", "EntradaQ_S_N_5"],
         ["Q_S_N_5", "EntradaQ_S_N_5"],
+        ["afloQ_S_N_5", "EntradaQ_S_N_5"],
         ["EntradaQ_S_N_5", "EntradaQ_AS2"],
         ["Q_AS2", "EntradaQ_AS2"],
+        ["afloQ_AS2", "EntradaQ_AS2"],
         ["EntradaQ_AS2", "entregaCanalZR8"],
         ["entregaCanalZR8", "DdaCanalZR8"],
         ["entregaCanalZR8", "EntradaQ_DelP"],
@@ -1015,6 +1073,27 @@
           "index_col": "Date",
           "parse_dates": true
         },
+       "afloraQuebHonda": {
+        "type": "dataframe",
+        "url": "data/recuperaciones.csv",
+         "column": "ZONE_3",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+       "afloramientoHuasco": {
+        "type": "dataframe",
+        "url": "data/recuperaciones.csv",
+        "index_col": "Date",
+        "column": "ZONE_4",
+        "parse_dates": true
+            },
+        "flowAfloHuasco": {
+        "type": "aggregated",
+        "agg_func": "product",
+        "parameters": [
+            "afloramientoHuasco",
+            0.014285714285714285]
+            },
         "flowCanalZR41": {
         "type": "dataframe",
         "url": "data/QSalidasCanalesm3day.csv",
