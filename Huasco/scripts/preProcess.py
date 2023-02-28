@@ -93,7 +93,7 @@ def makeDIS(modelo):
     perlen=list(dis.perlen.array)+list(pd.date_range('2019-04-01','2022-03-01',
                                                      freq='MS').days_in_month)
     nper=len(perlen)
-    nstp=list(24*np.ones(len(perlen)).astype(int))
+    nstp=list(1*np.ones(len(perlen)).astype(int))
     # steady=[False if ind>0 else True for ind,x in enumerate(nstp)]
     steady=[False for ind,x in enumerate(nstp)]
     mf.start_datetime=modelo.startDate
@@ -450,23 +450,24 @@ def makeRCH(modelo):
     
     for t in range(mf.dis.nper):
         dfR.loc[dfR.index[t],'R']=np.sum(rchAll[t][0])
-    
+        
     dfR.loc[dfR.index>'2019-03-01','R']=np.nan
     dfRPp=pd.concat([pp,dfR],axis=1)
     imp=IterativeImputer(imputation_order='ascending',random_state=0,
-max_iter=50,min_value=0,max_value=dfR.max().values[0],sample_posterior=True)
+max_iter=50,min_value=0,max_value=dfR.loc[dfR.index.year>=2000].max().values[0],
+sample_posterior=True)
     Y=imp.fit_transform(dfRPp)
     res=pd.DataFrame(Y,columns=dfRPp.columns,index=dfRPp.index)
     
     for stp in range(list(rch_spd.keys())[-1]+1):  
-        fRech=1
+        fRech=1.
         rechStp=rchAll[stp][0]        
         if stp>300:
             fRech=res.loc[res.index[stp],'R']/np.sum(rechStp)
-        rch_spd[stp]=fRech*rechStp.astype(np.float16)[:]
-        del rechStp
+        print(stp,fRech)
+        rch_spd[stp]=float(fRech)*rechStp.astype(np.float32)[:]
             
-    rch=flopy.modflow.ModflowRch(mf,nrchop=3,rech=rch_spd)
+    rch=flopy.modflow.ModflowRch(mf,nrchop=3,rech=rch_spd,irch=9,)
     return rch
 
 def main():
@@ -481,10 +482,10 @@ def main():
     modelo=model(pathNam,'Copiapo','1994-04-01')
     modelo.load()
     
-    # makeDIS(modelo)
-    # NWT(modelo.model)
-    # makeOC(modelo.model)
-    # makeWEL(modelo)
+    makeDIS(modelo)
+    NWT(modelo.model)
+    makeOC(modelo.model)
+    makeWEL(modelo)
     makeRCH(modelo)
     
     # incoporar la recarga del modelo superficial
