@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Model_Archive_List>
+  <bin Model_Name="" FileType="bin">
+    <FileName Model_Name="" FileType="bin">..\..\..\..\..\..\WRDAPP\MODFLOW-NWT_1.2.0\bin\MODFLOW-NWT_64.exe</FileName>
+  </bin>
+  <model Model_Name="" FileType="Model Input">
+    <FileName Model_Name="" FileType="Model Input">mfnwt.bas</FileName>
+    <FileName Model_Name="" FileType="Model Input">mfnwt.chd</FileName>
+    <FileName Model_Name="" FileType="Model Input">mfnwt.dis</FileName>
+    <FileName Model_Name="" FileType="Model Input">mfnwt.gsf</FileName>
+    <FileName Model_Name="" FileType="Model Input">mfnwt.nam.archive</FileName>
+    <FileName Model_Name="" FileType="Model Input">mfnwt.nwt</FileName>
+    <FileName Model_Name="" FileType="Model Input">mfnwt.oc</FileName>
+    <FileName Model_Name="" FileType="Model Input">mfnwt.rch</FileName>
+    <FileName Model_Name="" FileType="Model Input">mfnwt.riv</FileName>
+    <FileName Model_Name="" FileType="Model Input">mfnwt.upw</FileName>
+    <FileName Model_Name="" FileType="Model Input">RunModflow.Bat.archive</FileName>
+    <FileName Model_Name="" FileType="Model Input">usgs.mfnwt.reference</FileName>
+  </model>
+  <output Model_Name="" FileType="Model Output">
+    <FileName Model_Name="" FileType="Model Output">mfnwt.cbc</FileName>
+    <FileName Model_Name="" FileType="Model Output">mfnwt.fdn</FileName>
+    <FileName Model_Name="" FileType="Model Output">mfnwt.fhd</FileName>
+    <FileName Model_Name="" FileType="Model Output">mfnwt.lst</FileName>
+  </output>
+</Model_Archive_List>

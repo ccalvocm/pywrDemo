@@ -1,0 +1,13 @@
+LIST 7 gv2.lst
+BAS6  1 gv2.bas
+DIS  34 gv2.dis
+BCF6 11 gv2.bcf
+WEL 12 gv2.wel
+RIV 14 gv2.riv
+RCH 18 gv2.rch
+CHD 30 gv2.chd
+OC  22 gv2.oc
+PCG 19 gv2.pcg
+DATA(BINARY) 154 gv2.cbb
+DATA(BINARY) 13 gv2.hds
+DATA(BINARY) 31 gv2.ddn

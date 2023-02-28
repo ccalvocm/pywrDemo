@@ -1,0 +1,86 @@
+
+ ========== TRANSLATION TO MODFLOW2005 ==========
+
+
+
+ >>>>> Testing Layer Elevations <<<<<
+     0 ERRORS,   0 WARNINGS
+
+ >>>>> Translating BLOCK-CENTERED-FLOW Package <<<<<
+
+
+ >>>>> Translating RIVER Package <<<<<
+
+
+ >>>>> Translating DRAIN Package <<<<<
+
+
+ >>>>> Translating WELL 1 Package <<<<<
+
+
+ >>>>> Translating Time-Variant Specified Head (CHD) Package <<<<<
+     0 ERRORS,   0 WARNINGS
+
+ >>>>> Translating RECHARGE Package <<<<<
+
+
+ >>>>> Translating EVAPOTRANSPIRATION Package <<<<<
+
+
+ >>>>> Translating BASIC Package <<<<<
+
+ Warning -- 8265 Starting heads in layer 1 are below the bottom of the layer.  These cells will start out dry if this is an unconfined layer
+
+ Warning -- 5843 Starting heads in layer 2 are below the bottom of the layer.  These cells will start out dry if this is an unconfined layer
+     0 ERRORS,   2 WARNINGS
+
+ >>>>> Translating Discretization Package <<<<<
+
+ WARNING -- Transition from column   5 to   4 violates 50 percent convention 
+
+ WARNING -- Transition from column   6 to   5 violates 50 percent convention 
+
+ WARNING -- Transition from column  21 to  20 violates 50 percent convention 
+
+ WARNING -- Transition from column  46 to  47 violates 50 percent convention 
+
+ WARNING -- Transition from column 245 to 244 violates 50 percent convention 
+
+ WARNING -- Transition from column 258 to 259 violates 50 percent convention 
+
+ WARNING -- Transition from column 260 to 259 violates 50 percent convention 
+
+ WARNING -- Transition from column 261 to 262 violates 50 percent convention 
+
+ WARNING -- Transition from column 264 to 263 violates 50 percent convention 
+
+ WARNING -- Transition from column 269 to 270 violates 50 percent convention 
+
+ WARNING -- Transition from column 276 to 275 violates 50 percent convention 
+
+ WARNING -- Transition from column 283 to 284 violates 50 percent convention 
+
+ WARNING -- Transition from column 303 to 304 violates 50 percent convention 
+
+ WARNING -- Transition from column 309 to 310 violates 50 percent convention 
+
+ WARNING -- Transition from row  12 to  11 violates 50 percent convention 
+
+ WARNING -- Transition from row  28 to  27 violates 50 percent convention 
+
+ WARNING -- Transition from row  33 to  34 violates 50 percent convention 
+
+ WARNING -- Transition from row  43 to  44 violates 50 percent convention 
+
+ WARNING -- Transition from row  62 to  61 violates 50 percent convention 
+
+ WARNING -- Transition from row  62 to  63 violates 50 percent convention 
+
+ WARNING -- Transition from row  81 to  80 violates 50 percent convention 
+
+ WARNING -- Transition from row 100 to 101 violates 50 percent convention 
+
+ WARNING -- Transition from row 109 to 110 violates 50 percent convention 
+     0 ERRORS,  23 WARNINGS
+
+ ========== TRANSLATION COMPLETE! ==========

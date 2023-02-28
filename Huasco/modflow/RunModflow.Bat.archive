@@ -1,0 +1,4 @@
+if not exist "..\..\output\NUL" mkdir "..\..\output"
+if not exist "..\..\output\output.mfnwt\NUL" mkdir "..\..\output\output.mfnwt"
+..\..\bin\MODFLOW-NWT_64.exe mfnwt.nam /wait
+pause

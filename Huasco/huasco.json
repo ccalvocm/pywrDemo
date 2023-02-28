@@ -152,8 +152,8 @@
         },
         {"name": "rLagunaGrandeAbajo",
             "type": "link",
-            "cost": 10,
-            "max_flow": 500
+            "cost": 1000,
+            "max_flow": 200000
         },
         {"name": "confValerianoLagunaGrande",
             "type": "link",
@@ -166,7 +166,7 @@
         {"name": "rLagunaChicaAbajo",
             "type": "link",
             "cost": 1000,
-            "max_flow":100000
+            "max_flow": 100000
         },
        {"name": "entradaQValeriano",
             "type": "link",
@@ -508,7 +508,7 @@
             "name": "EntradaLagunaGrande",
             "type": "catchment",
             "flow": "AfluEmbLagunaGrande",
-            "cost": -1100
+            "cost": -11000
         },
         {
           "name": "rStaJuanaAbajo",
@@ -822,7 +822,7 @@
         "type": "numpyarraynoderecorder",
         "node": "rStaJuanaAbajo"
         },
-        "entregaCanalZR3": {
+        "EntradaSantaJuana": {
         "type": "numpyarraynoderecorder",
         "node": "entregaCanalZR3"
         },
@@ -863,7 +863,11 @@
         "EntregaLagunaChica": {
         "type": "numpyarraynoderecorder",
         "node": "rLagunaChicaAbajo"
-        }      
+        },
+        "EntregaLagunaGrande": {
+        "type": "numpyarraynoderecorder",
+        "node": "rLagunaGrandeAbajo"
+        }        
     },
     "parameters": {
         "reservoir1_level": {
