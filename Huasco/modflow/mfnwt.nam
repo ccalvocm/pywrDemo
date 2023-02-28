@@ -8,9 +8,9 @@ NWT               32  mfnwt.nwt
 UPW              134  mfnwt.upw
 CHD               17  mfnwt.chd
 RIV               21  mfnwt.riv
-RCH               24  mfnwt.rch
+RCH               19  mfnwt.rch
 WEL               20  mfnwt.wel
-DATA              37  mfnwt.fhd
-DATA              38  mfnwt.fdn
-DATA(BINARY)       9  mfnwt.cbc REPLACE
+DATA              37  ..\modflow\mfnwt.fhd
+DATA              38  ..\modflow\mfnwt.fdn
 DATA(BINARY)      51  mfnwt.hds REPLACE
+DATA(BINARY)       9  mfnwt.cbc REPLACE

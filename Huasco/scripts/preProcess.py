@@ -10,7 +10,10 @@ import flopy
 import pandas as pd
 import numpy as np
 import geopandas as gpd
+from sklearn.experimental import enable_iterative_imputer
+from sklearn.impute import IterativeImputer
 
+#%%
 class model(object):
     def __init__(self,pathNam,name,startDate):
         self.path=pathNam
@@ -249,7 +252,7 @@ def processBudget():
     # dfZB[list(dfZB.columns[dfZB.columns.str.contains('TO_')])]=-dfZB[list(dfZB.columns[dfZB.columns.str.contains('TO_')])]
     # dfZB[cols].plot()
     
-    ruta_lst=os.path.join('.','gv6nwt.lst')
+    ruta_lst=os.path.join('.','mfnwt.lst')
     mf_list =  flopy.utils.MfListBudget(ruta_lst)
     df_incremental, df_cumulative=mf_list.get_dataframes(start_datetime="1993-01-01")
     dfError=df_incremental[['IN-OUT','PERCENT_DISCREPANCY']]/86400
@@ -427,29 +430,44 @@ def SWmodel(ModeloEmbalseLautaro_df_M,LaPuerta_GWSW_df_M):
     # RCH_lau_df_3M = RCH_lau_df_1M.resample('Q').mean().reset_index().drop(columns='date').head(100)
     return SWMODEL_out_df['Q_InfiltracionLautaro']
 
-# def makeRCH(model_):
+def makeRCH(modelo):
 
-#     # crear matriz de coordenadas
-#     rchAll=model_.rch.rech.array[0][0]
-#     # identificar las celdas con recarga desde el embalse
-#     mask=rchAll>0.054
+    # cargar precipitaciones
+    mf=modelo.model
+    pp=pd.read_csv(os.path.join('.','GWPp.csv'),index_col=0,parse_dates=True)
+    dfR=pp.copy()
+    dfR.columns=['R']
+    dfR.loc[dfR.index,'R']=0
 
-#     # actualizar el paquete RCH
-#     # actualizar la tasa de recarga por celda
-#     # match con los srtress periods
+    # actualizar el paquete RCH
+    # actualizar la tasa de recarga por celda
+    # match con los srtress periods
  
-#     # crear diccionario del paquete RCH
-#     rch_spd=dict.fromkeys(range(model_.dis.nper))
+    # crear diccionario del paquete RCH
+    rch_spd=dict.fromkeys(range(mf.dis.nper))
     
-#     for stp in range(list(rch_spd.keys())[-1]+1):  
-#         rechStp=model_.rch.rech.array[stp][0]
-#         if stp>1:
-#             rechStp[mask]=rchByCell[stp-1]
-#         rch_spd[stp]=rechStp.astype(np.float16)[:]
-#         del rechStp
-        
-#     rch=flopy.modflow.ModflowRch(model_,nrchop=3,rech=rch_spd)
-#     return rch
+    rchAll=mf.rch.rech.array
+    
+    for t in range(mf.dis.nper):
+        dfR.loc[dfR.index[t],'R']=np.sum(rchAll[t][0])
+    
+    dfR.loc[dfR.index>'2019-03-01','R']=np.nan
+    dfRPp=pd.concat([pp,dfR],axis=1)
+    imp=IterativeImputer(imputation_order='ascending',random_state=0,
+max_iter=50,min_value=0,max_value=dfR.max().values[0],sample_posterior=True)
+    Y=imp.fit_transform(dfRPp)
+    res=pd.DataFrame(Y,columns=dfRPp.columns,index=dfRPp.index)
+    
+    for stp in range(list(rch_spd.keys())[-1]+1):  
+        fRech=1
+        rechStp=rchAll[stp][0]        
+        if stp>300:
+            fRech=res.loc[res.index[stp],'R']/np.sum(rechStp)
+        rch_spd[stp]=fRech*rechStp.astype(np.float16)[:]
+        del rechStp
+            
+    rch=flopy.modflow.ModflowRch(mf,nrchop=3,rech=rch_spd)
+    return rch
 
 def main():
 
@@ -463,10 +481,11 @@ def main():
     modelo=model(pathNam,'Copiapo','1994-04-01')
     modelo.load()
     
-    makeDIS(modelo)
-    NWT(modelo.model)
-    makeOC(modelo.model)
-    makeWEL(modelo)
+    # makeDIS(modelo)
+    # NWT(modelo.model)
+    # makeOC(modelo.model)
+    # makeWEL(modelo)
+    makeRCH(modelo)
     
     # incoporar la recarga del modelo superficial
     
