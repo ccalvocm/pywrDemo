@@ -93,7 +93,7 @@ def makeDIS(modelo):
     perlen=list(dis.perlen.array)+list(pd.date_range('2019-04-01','2022-03-01',
                                                      freq='MS').days_in_month)
     nper=len(perlen)
-    nstp=list(1*np.ones(len(perlen)).astype(int))
+    nstp=list(12*np.ones(len(perlen)).astype(int))
     # steady=[False if ind>0 else True for ind,x in enumerate(nstp)]
     steady=[False for ind,x in enumerate(nstp)]
     mf.start_datetime=modelo.startDate
@@ -485,20 +485,21 @@ def main():
     makeDIS(modelo)
     NWT(modelo.model)
     makeOC(modelo.model)
-    makeWEL(modelo)
+    # makeWEL(modelo)
     makeRCH(modelo)
     
     # incoporar la recarga del modelo superficial
     
     # escribir los paquetes
-    modelo.model.write_input(['WEL','OC','DIS','NWT','RIV','BAS6',
+    # modelo.model.write_input(['WEL','OC','DIS','NWT','RIV','BAS6',
+    #                           'UPW','CHD','RCH'])
+    modelo.model.write_input(['OC','DIS','NWT','RIV','BAS6',
                               'UPW','CHD','RCH'])
-    
     # correr modelo de aguas subterráneas
     modelo.model.run_model(silent=False)
     
-    processHeads(modelo)
-    processBudget()
+    # processHeads(modelo)
+    # processBudget()
 
-# if __name__=='__main__':
-#     main()
+if __name__=='__main__':
+    main()
