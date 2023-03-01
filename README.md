@@ -7,4 +7,6 @@ Pruebas de asignación de recursos hídricos en pywr como alternativa open-sourc
 ### Río Huasco
 
 ![alt text](https://github.com/ccalvocm/pywrDemo/blob/pruebas/imgs/Huasco.png)
-```
+![alt text](https://github.com/ccalvocm/pywrDemo/blob/main/imgs/modeloHuasco.png)
+
+
