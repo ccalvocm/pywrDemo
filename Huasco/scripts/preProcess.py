@@ -273,18 +273,19 @@ def processBudget():
     # dfZB[list(dfZB.columns[dfZB.columns.str.contains('TO_')])]=-dfZB[list(dfZB.columns[dfZB.columns.str.contains('TO_')])]
     # dfZB[cols].plot()
 
-    ruta_lst = os.path.join('.', 'mfnwt.lst')
+    ruta_lst = os.path.join('..','modflow','mfnwt.lst')
     mf_list = flopy.utils.MfListBudget(ruta_lst)
     df_incremental, df_cumulative = mf_list.get_dataframes(
-        start_datetime="1994-04-01")
+        start_datetime="1994-03-01")
     dfError = df_incremental[['IN-OUT', 'PERCENT_DISCREPANCY']]/86400
     dfError.columns = ['Entradas-salidas', 'Discrepancia del balance (%)']
     fig, ax = plt.subplots(1)
     dfError.plot(ax=ax)
-    ax.set_ylim([-1e-3, 1e-3])
+    ax.legend(list(dfError.columns),fontsize=14)
+    ax.set_ylim([-1e-4, 1e-4])
     ax.set_ylabel('Entradas-salidas ($m^3/s$)', fontsize=14)
     plt.grid()
-    plt.savefig(os.path.join('.', 'out', 'cierreBalanceHuasco.svg'),
+    plt.savefig(os.path.join('..','modflow','out', 'cierreBalanceHuasco.svg'),
                 bbox_inches='tight')
 
     cols = [x for x in df_incremental.columns if (
@@ -294,9 +295,10 @@ def processBudget():
     df_incremental = df_incremental/86400
     df_incremental[cols].plot()
     plt.ylabel('Balance ($m^3/s$)', fontsize=14)
-    plt.savefig(os.path.join('.', 'out', 'balanceHuasco.svg'),
+    plt.tick_params(axis='both', which='major', labelsize=12)
+    plt.savefig(os.path.join('..','modflow','out', 'balanceHuasco.svg'),
                 bbox_inches='tight')
-    df_incremental.to_excel(os.path.join('.', 'out', 'balanceHuasco.xlsx'))
+    df_incremental.to_excel(os.path.join('..','modflow','out', 'balanceHuasco.xlsx'))
     # incremental, cumulative = mf_list.get_budget()
 
     # Leer el balance del primer timestep y primer stress period
@@ -305,10 +307,11 @@ def processBudget():
     plt.bar(data['index'], data['value'])
     plt.xticks(data['index'], data['name'], rotation=45, size=6)
     plt.show()
-    plt.ylabel('Balance volumétrico ($m^3$)')
+    plt.ylabel('Balance volumétrico ($m^3$)',fontsize=14)
     plt.tight_layout()
     plt.grid()
-    plt.savefig(os.path.join('.', 'out', 'balancePromedioHuasco.svg'),
+    plt.tick_params(axis='both', which='major', labelsize=12)
+    plt.savefig(os.path.join('..','modflow','out', 'balancePromedioHuasco.svg'),
                 bbox_inches='tight')
 
 
@@ -555,5 +558,5 @@ def main():
     processHeads(modelo)
     processBudget()
 
-# if __name__=='__main__':
-#     main()
+if __name__=='__main__':
+    main()
