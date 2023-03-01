@@ -283,6 +283,12 @@
             "cost": -102
         },
         {
+            "name": "InfSantaJuana",
+            "type": "Output",
+            "cost": -100,
+            "max_flow": "infiltrationSantaJuana"
+        },  
+        {
             "name": "EvapLagunaGrande",
             "type": "Output",
             "max_flow": "LagunaGrandeEvaporation",
@@ -319,6 +325,11 @@
           "name": "EntradaQuebHonda",
             "type": "catchment",
             "flow":  "flowQuebHonda"
+        },     
+        {
+          "name": "AfloraQuebHonda",
+            "type": "catchment",
+            "flow":  "afloraQuebHonda"
         },
         {
           "name": "entregaCanalZR42",
@@ -340,6 +351,51 @@
           "name": "Q_S_N_1",
             "type": "catchment",
             "flow":  "flowQ_S_N_1"
+        },
+        {
+          "name": "afloQ_S_N_1",
+            "type": "catchment",
+            "flow":  "flowAfloHuasco"
+        },
+        {
+          "name": "afloQ_S_N_2",
+            "type": "catchment",
+            "flow":  "flowAfloHuasco"
+        },
+        {
+          "name": "afloQ_S_N_3",
+            "type": "catchment",
+            "flow":  "flowAfloHuasco"
+        },
+        {
+          "name": "afloQ_S_N_7",
+            "type": "catchment",
+            "flow":  "flowAfloHuasco"
+        },
+        {
+          "name": "afloQ_S_N_5",
+            "type": "catchment",
+            "flow":  "flowAfloHuasco"
+        },
+        {
+          "name": "afloQ_AS1",
+            "type": "catchment",
+            "flow":  "flowAfloHuasco"
+        },
+        {
+          "name": "afloQ_AS2",
+            "type": "catchment",
+            "flow":  "flowAfloHuasco"
+        },
+        {
+          "name": "Q_DelP",
+            "type": "catchment",
+            "flow":  "flowAfloHuasco"
+        },
+        {
+          "name": "Q_DelP",
+            "type": "catchment",
+            "flow":  "flowAfloHuasco"
         },
         {
           "name": "entregaCanalZR5",
@@ -771,15 +827,18 @@
         ["entregaCanalZR3", "EmbSantaJuana"],
         ["EmbSantaJuana", "EvapSantaJuana"],
         ["EmbSantaJuana", "rStaJuanaAbajo"],
+        ["EmbSantaJuana", "InfSantaJuana"],
         ["EntradaQuebCam", "rStaJuanaAbajo"],
         ["rStaJuanaAbajo", "entregaCanalZR41"],
         ["entregaCanalZR41", "DdaCanalZR4"],
         ["entregaCanalZR41", "entradaHonda"],
         ["EntradaQuebHonda", "entradaHonda"],
+        ["AfloraQuebHonda", "entradaHonda"],
         ["entradaHonda", "entregaCanalZR42"],
         ["entregaCanalZR42", "DdaCanalZR42"],
         ["entregaCanalZR42", "EntradaQ_S_N_1"],
         ["Q_S_N_1", "EntradaQ_S_N_1"],
+        ["afloQ_S_N_1", "EntradaQ_S_N_1"],
         ["EntradaQ_S_N_1", "entregaCanalZR5"],
         ["entregaCanalZR5", "DdaCanalZR5"],
         ["entregaCanalZR5", "EntradaQ_AguaV"],
@@ -789,18 +848,24 @@
         ["entregaCanalZR6", "DdaCanalZR6"],
         ["entregaCanalZR6", "EntradaQ_S_N_2"],
         ["Q_S_N_2", "EntradaQ_S_N_2"],
+        ["afloQ_S_N_2", "EntradaQ_S_N_2"],
         ["Q_S_N_7", "EntradaQ_S_N_7"],
+        ["afloQ_S_N_7", "EntradaQ_S_N_7"],
         ["EntradaQ_S_N_2", "EntradaQ_S_N_7"],
         ["EntradaQ_S_N_7", "EntradaQ_S_N_3"],
         ["Q_S_N_3", "EntradaQ_S_N_3"],
+        ["afloQ_S_N_3", "EntradaQ_S_N_3"],
         ["EntradaQ_S_N_3", "entregaCanalZR7"],
         ["entregaCanalZR7", "DdaCanalZR7"],
         ["entregaCanalZR7", "EntradaQ_AS1"],
         ["Q_AS1", "EntradaQ_AS1"],
+        ["afloQ_AS1", "EntradaQ_AS1"],
         ["EntradaQ_AS1", "EntradaQ_S_N_5"],
         ["Q_S_N_5", "EntradaQ_S_N_5"],
+        ["afloQ_S_N_5", "EntradaQ_S_N_5"],
         ["EntradaQ_S_N_5", "EntradaQ_AS2"],
         ["Q_AS2", "EntradaQ_AS2"],
+        ["afloQ_AS2", "EntradaQ_AS2"],
         ["EntradaQ_AS2", "entregaCanalZR8"],
         ["entregaCanalZR8", "DdaCanalZR8"],
         ["entregaCanalZR8", "EntradaQ_DelP"],
@@ -817,6 +882,10 @@
         "SantaJuanaDeliver": {
         "type": "NodeRecorder",
         "node": "rStaJuanaAbajo"
+        },
+       "InfSantaJuana": {
+        "type": "numpyarraynoderecorder",
+        "node": "InfSantaJuana"
         },
         "rStaJuanaAbajo": {
         "type": "numpyarraynoderecorder",
@@ -893,6 +962,14 @@
           "values": [3474,3485],
           "interp_kwargs": {  
           "kind": "linear"}
+          },
+        "infiltrationSantaJuana": {
+          "type": "interpolatedvolume",
+          "node": "EmbSantaJuana",
+          "volumes": [0,10000,1030000,5130000,10350000,15480000,20460000,30240000,40150000,50450000,60760000,68050000,72420000,74370000,76090000,79190000,81290000,81370000,84190000,87170000,90220000,93400000,94960000,96090000,99500000,102200000,105800000,108700000,112000000,116700000,119600000,122800000,126200000,129000000,130500000,132500000,133000000,138400000,141200000,144500000,147600000,151700000,154100000,157300000,159300000,160700000,163400000,164400000,168600000,170300000,171000000,171700000,172300000,173400000],
+          "values": [0.0, 0.17309339894646808, 17.82862009148621, 88.79691365953812, 179.15166790959447, 267.94858156913256, 354.1490942444737, 523.4344384141194, 694.9699967700693, 873.2561976849314, 1051.71549199874, 1177.9005798307153, 1253.5423951703217, 1287.2956079648832, 1317.0676725836756, 1370.7266262570806, 1407.076240035839, 1408.4609872274107, 1457.2733257303148, 1508.8551586163621, 1561.648645295035, 1616.6923461600118, 1643.6949163956608, 1663.2544704766117, 1722.2793195173574, 1769.0145372329036, 1831.3281608536322, 1881.525246548108, 1938.6460682004424, 2019.9999657052824, 2070.197051399758, 2125.586939062628, 2184.4386947044272, 2232.904846409438, 2258.8688562514085, 2293.487536040702, 2302.1422059880256, 2395.612641419118, 2444.0787931241293, 2501.1996147764635, 2554.858568449869, 2625.8268620179206, 2667.369277765073, 2722.7591654279427, 2757.3778452172364, 2781.610921069742, 2828.3461387852885, 2845.655478679935, 2918.354706237452, 2947.7805840583515, 2959.897121984604, 2972.013659910857, 2982.3992638476448, 3001.4395377317564],
+          "interp_kwargs": {  
+            "kind": "linear"}
           },
         "diasdelmes": {
             "type":"monthlyprofile",
@@ -1015,6 +1092,27 @@
           "index_col": "Date",
           "parse_dates": true
         },
+       "afloraQuebHonda": {
+        "type": "dataframe",
+        "url": "data/recuperaciones.csv",
+         "column": "ZONE_3",
+          "index_col": "Date",
+          "parse_dates": true
+        },
+       "afloramientoHuasco": {
+        "type": "dataframe",
+        "url": "data/recuperaciones.csv",
+        "index_col": "Date",
+        "column": "ZONE_4",
+        "parse_dates": true
+            },
+        "flowAfloHuasco": {
+        "type": "aggregated",
+        "agg_func": "product",
+        "parameters": [
+            "afloramientoHuasco",
+            0.014285714285714285]
+            },
         "flowCanalZR41": {
         "type": "dataframe",
         "url": "data/QSalidasCanalesm3day.csv",
