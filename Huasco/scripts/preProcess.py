@@ -281,10 +281,11 @@ def processBudget():
     dfError.columns = ['Entradas-salidas', 'Discrepancia del balance (%)']
     fig, ax = plt.subplots(1)
     dfError.plot(ax=ax)
-    ax.legend(list(dfError.columns),fontsize=14)
+    ax.legend(list(dfError.columns),fontsize=16)
     ax.set_ylim([-1e-4, 1e-4])
-    ax.set_ylabel('Entradas-salidas ($m^3/s$)', fontsize=14)
+    ax.set_ylabel('Entradas-salidas ($m^3/s$)', fontsize=16)
     plt.grid()
+    plt.tick_params(axis='both', which='major', labelsize=14)
     plt.savefig(os.path.join('..','modflow','out', 'cierreBalanceHuasco.svg'),
                 bbox_inches='tight')
 
@@ -296,6 +297,7 @@ def processBudget():
     df_incremental[cols].plot()
     plt.ylabel('Balance ($m^3/s$)', fontsize=14)
     plt.tick_params(axis='both', which='major', labelsize=12)
+    plt.grid()
     plt.savefig(os.path.join('..','modflow','out', 'balanceHuasco.svg'),
                 bbox_inches='tight')
     df_incremental.to_excel(os.path.join('..','modflow','out', 'balanceHuasco.xlsx'))
