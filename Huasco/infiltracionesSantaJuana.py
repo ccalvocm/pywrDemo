@@ -11,7 +11,7 @@ import numpy as np
 
 def toFloat(df):
     return df.applymap(lambda x: x.replace(',',
-'.')).apply(lambda x: x.str.strip()).replace('',np.nan).replace(',','.').astype(float)
+'.')).apply(lambda x: x.str.strip()).replace('',np.nan).astype(float)
 
 def ravel(df):
     df=df[df.index.notnull()]
@@ -79,8 +79,8 @@ def main():
                       index_col=0,encoding='latin1')
     volSJ=toFloat(volSJ)
 
-    dfInf=ravel(infSJ)
-    dfVol=ravel(volSJ)
+    dfInf=ravel(infSJ.astype(float))*86.400
+    dfVol=ravel(volSJ)*1e6
     
-    m=linearReg(dfVol*1e6,dfInf*86400)
+    pendiente=linearReg(dfVol,dfInf)
 
