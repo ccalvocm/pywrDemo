@@ -1,7 +1,7 @@
 # pywrDemo
-Pruebas de asignación de recursos hídricos en pywr como alternativa open-source a WEAP.
+Open-source water resources management modelling 
 
-## Cuencas modeladas:
+## Modelled watersheds:
 
 ### Estero Codegua
 ### Río Huasco
