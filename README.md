@@ -9,7 +9,7 @@ Open-source water resources management modelling
 ![alt text](https://github.com/ccalvocm/pywrDemo/blob/pruebas/imgs/Huasco.png)
 ![alt text](https://github.com/ccalvocm/pywrDemo/blob/main/imgs/modeloHuasco.png)
 
-#### interactive
+#### Interactive
 https://raw.githack.com/ccalvocm/pywrDemo/main/imgs/Huasco.html  
 https://raw.githack.com/ccalvocm/pywrDemo/main/Huasco/model.html
 
