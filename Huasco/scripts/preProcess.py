@@ -294,7 +294,7 @@ def processBudget():
     df_incremental[[x for x in cols if '_OUT' in x]] = - \
         df_incremental[[x for x in cols if '_OUT' in x]]
     df_incremental = df_incremental/86400
-    df_incremental[cols].plot()
+    df_incremental[cols].plot(linewidth=2.5)
     plt.ylabel('Balance ($m^3/s$)', fontsize=14)
     plt.tick_params(axis='both', which='major', labelsize=12)
     plt.grid()
